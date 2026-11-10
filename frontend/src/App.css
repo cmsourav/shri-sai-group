@@ -1,0 +1,116 @@
+/* ————— Shri Sai Group — cinematic editorial system ————— */
+
+.font-display {
+    font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+/* Film grain overlay — kills digital flatness */
+.grain::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 90;
+    opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Animated underline links */
+.link-underline {
+    position: relative;
+}
+.link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Cinematic image hover zoom */
+.zoom-frame {
+    overflow: hidden;
+}
+.zoom-frame img {
+    transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: transform;
+}
+.zoom-frame:hover img {
+    transform: scale(1.06);
+}
+
+/* Arrow nudge on hover */
+.arrow-nudge svg {
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.arrow-nudge:hover svg {
+    transform: translateX(6px);
+}
+
+/* Underline form fields */
+.field-input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    padding: 0.85rem 0;
+    font-size: 0.95rem;
+    color: inherit;
+    outline: none;
+    border-radius: 0;
+    transition: border-color 0.35s ease;
+}
+.field-input::placeholder {
+    color: color-mix(in srgb, currentColor 40%, transparent);
+}
+.field-input:focus {
+    border-bottom-color: var(--field-accent, currentColor);
+}
+select.field-input option {
+    color: #111;
+    background: #fff;
+}
+input[type="date"].field-input::-webkit-calendar-picker-indicator {
+    filter: invert(0.6);
+}
+
+/* Ghost display numerals */
+.ghost-numeral {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    line-height: 0.8;
+    user-select: none;
+}
+
+/* Scroll indicator pulse */
+@keyframes scroll-hint {
+    0% { transform: translateY(0); opacity: 1; }
+    70% { transform: translateY(14px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+}
+.scroll-hint-dot {
+    animation: scroll-hint 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
