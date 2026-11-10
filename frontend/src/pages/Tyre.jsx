@@ -246,7 +246,14 @@ const Tyre = () => {
                     </div>
                     <div className="lg:col-span-8">
                         <Reveal delay={0.1}>
-                            <DemoForm theme={T} fields={FORM_FIELDS} submitLabel="Send Enquiry" formId="tyre-enquiry" />
+                            <DemoForm
+                                theme={T}
+                                fields={FORM_FIELDS}
+                                submitLabel="Send Enquiry"
+                                formId="tyre-enquiry"
+                                recipientKey="tyre"
+                                venture="Shri Sai Tyre"
+                            />
                         </Reveal>
                     </div>
                 </div>

@@ -230,7 +230,14 @@ const Boutique = () => {
                     </div>
                     <div className="lg:col-span-8">
                         <Reveal delay={0.1}>
-                            <DemoForm theme={T} fields={FORM_FIELDS} submitLabel="Enquire Now" formId="boutique-enquiry" />
+                            <DemoForm
+                                theme={T}
+                                fields={FORM_FIELDS}
+                                submitLabel="Enquire Now"
+                                formId="boutique-enquiry"
+                                recipientKey="boutique"
+                                venture="KIRA Boutique Designer"
+                            />
                         </Reveal>
                     </div>
                 </div>

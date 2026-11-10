@@ -7,11 +7,26 @@ import Reveal from "@/components/motion/Reveal";
 import MaskedLines from "@/components/motion/MaskedLines";
 import Lightbox from "@/components/shared/Lightbox";
 import PlaceholderChip from "@/components/shared/PlaceholderChip";
+import DemoForm from "@/components/shared/DemoForm";
 import ContactInvite from "@/components/shared/ContactInvite";
 import { THEMES, IMG } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.trust;
+
+const FORM_FIELDS = [
+    { name: "name", label: "Name", required: true, placeholder: "Your full name" },
+    { name: "phone", label: "Phone", type: "tel", required: true, placeholder: "Your phone number" },
+    { name: "email", label: "Email", type: "email", optional: true, placeholder: "you@example.com" },
+    {
+        name: "enquiry_type",
+        label: "Enquiry type",
+        type: "select",
+        required: true,
+        options: ["Contribution / donation", "Volunteering", "Community programme", "Other"],
+    },
+    { name: "message", label: "Message", type: "textarea", required: true, placeholder: "How would you like to help, or what would you like to know?" },
+];
 
 const GALLERY = [
     { src: IMG.handsHeart, alt: "Hands joined together holding a painted heart" },
@@ -230,6 +245,40 @@ const Trust = () => {
                                     Enlarge &amp; download activate when the real QR arrives
                                 </p>
                             </div>
+                        </Reveal>
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact form */}
+            <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20" data-testid="trust-enquiry-section">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
+                    <div className="lg:col-span-4">
+                        <Reveal>
+                            <p className="text-xs md:text-sm uppercase tracking-[0.28em] font-semibold mb-8" style={{ color: T.accent }}>
+                                Contact Sai Neravu Trust
+                            </p>
+                        </Reveal>
+                        <h2 className="font-display font-medium text-4xl md:text-5xl leading-[1.06] tracking-tight">
+                            <MaskedLines lines={["Write to", "the trust."]} />
+                        </h2>
+                        <Reveal delay={0.15}>
+                            <p className="mt-6 text-sm leading-relaxed opacity-65 max-w-sm">
+                                Contributions, volunteering or programme questions — send an enquiry and it
+                                reaches the trust's inbox directly.
+                            </p>
+                        </Reveal>
+                    </div>
+                    <div className="lg:col-span-8">
+                        <Reveal delay={0.1}>
+                            <DemoForm
+                                theme={T}
+                                fields={FORM_FIELDS}
+                                submitLabel="Send Enquiry"
+                                formId="trust-enquiry"
+                                recipientKey="trust"
+                                venture="Sai Neravu Trust"
+                            />
                         </Reveal>
                     </div>
                 </div>

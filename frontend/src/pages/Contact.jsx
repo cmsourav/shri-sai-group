@@ -119,12 +119,19 @@ const Contact = () => (
                     <Reveal>
                         <h2 className="font-display font-medium text-3xl md:text-4xl tracking-tight mb-4">General enquiry</h2>
                         <p className="text-sm text-white/50 mb-12 max-w-lg leading-relaxed">
-                            This form validates your details in the browser only — as a static website it cannot
-                            send or store enquiries. It will show a clear demonstration notice instead.
+                            This form emails your enquiry straight to the group's inbox via EmailJS once the
+                            keys are configured — until then it shows a clearly labelled demonstration notice.
                         </p>
                     </Reveal>
                     <Reveal delay={0.1}>
-                        <DemoForm theme={T} fields={FORM_FIELDS} submitLabel="Contact Shri Sai Group" formId="contact-enquiry" />
+                        <DemoForm
+                            theme={T}
+                            fields={FORM_FIELDS}
+                            submitLabel="Contact Shri Sai Group"
+                            formId="contact-enquiry"
+                            recipientKey="group"
+                            venture="Shri Sai Group"
+                        />
                     </Reveal>
                 </div>
             </div>

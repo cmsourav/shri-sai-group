@@ -8,11 +8,25 @@ import MaskedLines from "@/components/motion/MaskedLines";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import Lightbox from "@/components/shared/Lightbox";
 import PlaceholderChip from "@/components/shared/PlaceholderChip";
+import DemoForm from "@/components/shared/DemoForm";
 import ContactInvite from "@/components/shared/ContactInvite";
 import { THEMES, IMG } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.travels;
+
+const FORM_FIELDS = [
+    { name: "name", label: "Name", required: true, placeholder: "Your full name" },
+    { name: "phone", label: "Phone", type: "tel", required: true, placeholder: "Your phone number" },
+    {
+        name: "route",
+        label: "Route / destination",
+        optional: true,
+        placeholder: "Where are you travelling?",
+    },
+    { name: "date", label: "Travel date", type: "date", optional: true },
+    { name: "message", label: "Message", type: "textarea", required: true, placeholder: "Seats, timings, group bookings — ask us anything…" },
+];
 
 const SERVICES = [
     {
@@ -231,6 +245,40 @@ const Travels = () => {
             </section>
 
             <span id="travels-routes-anchor" className="block -mt-20 pt-20" aria-hidden="true" />
+
+            {/* Enquiry form */}
+            <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 border-t border-white/10" style={{ background: T.surface }} data-testid="travels-enquiry-section">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
+                    <div className="lg:col-span-4">
+                        <Reveal>
+                            <p className="text-xs md:text-sm uppercase tracking-[0.28em] font-semibold mb-8" style={{ color: T.accent }}>
+                                Contact KY Travels
+                            </p>
+                        </Reveal>
+                        <h2 className="font-display font-medium text-4xl md:text-5xl leading-[1.06] tracking-tight">
+                            <MaskedLines lines={["Ask about", "your trip."]} />
+                        </h2>
+                        <Reveal delay={0.15}>
+                            <p className="mt-6 text-sm leading-relaxed text-white/60 max-w-sm">
+                                Routes, timings, group or corporate bookings — send an enquiry and it reaches
+                                the KY Travels inbox directly.
+                            </p>
+                        </Reveal>
+                    </div>
+                    <div className="lg:col-span-8">
+                        <Reveal delay={0.1}>
+                            <DemoForm
+                                theme={T}
+                                fields={FORM_FIELDS}
+                                submitLabel="Send Enquiry"
+                                formId="travels-enquiry"
+                                recipientKey="travels"
+                                venture="KY Travels"
+                            />
+                        </Reveal>
+                    </div>
+                </div>
+            </section>
 
             <ContactInvite theme={T} heading={["Planning a", "journey?"]} note="Route, schedule and booking questions — reach Shri Sai Group." />
 

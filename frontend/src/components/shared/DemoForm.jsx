@@ -1,21 +1,25 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Info } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Info, CheckCircle2, AlertCircle } from "lucide-react";
+import { emailjsReady, sendEnquiry } from "../../lib/emailjs";
 
 /*
- * Frontend-validation-only enquiry form for a STATIC website.
- * On valid submit it shows an explicitly labelled DEMONSTRATION notice —
- * it never claims the enquiry was sent, stored or received.
+ * Enquiry form for the static site.
+ * - Validates in the browser.
+ * - If EmailJS env keys are configured -> genuinely sends via EmailJS and
+ *   shows a success state only after the send resolves.
+ * - If keys are placeholders -> shows an explicitly labelled DEMO notice and
+ *   never claims anything was sent.
  */
-export const DemoForm = ({ theme, fields, submitLabel, formId }) => {
+export const DemoForm = ({ theme, fields, submitLabel, formId, recipientKey = "group", venture = "Shri Sai Group" }) => {
     const [values, setValues] = useState({});
     const [errors, setErrors] = useState({});
-    const [demoShown, setDemoShown] = useState(false);
+    const [status, setStatus] = useState({ type: "idle" }); // idle | sending | demo | success | error
 
     const set = (name, v) => {
         setValues((s) => ({ ...s, [name]: v }));
         setErrors((s) => ({ ...s, [name]: undefined }));
-        setDemoShown(false);
+        if (status.type !== "idle" && status.type !== "sending") setStatus({ type: "idle" });
     };
 
     const validate = () => {
@@ -31,17 +35,46 @@ export const DemoForm = ({ theme, fields, submitLabel, formId }) => {
         return e;
     };
 
-    const onSubmit = (ev) => {
+    const onSubmit = async (ev) => {
         ev.preventDefault();
         const e = validate();
         setErrors(e);
-        if (Object.keys(e).length === 0) setDemoShown(true);
+        if (Object.keys(e).length > 0) return;
+
+        if (!emailjsReady) {
+            setStatus({ type: "demo" });
+            return;
+        }
+
+        setStatus({ type: "sending" });
+        try {
+            await sendEnquiry({
+                recipientKey,
+                venture,
+                formName: `${venture} — ${submitLabel}`,
+                fields: values,
+            });
+            setValues({});
+            setStatus({ type: "success" });
+        } catch (err) {
+            console.error("EmailJS send failed", err);
+            setStatus({ type: "error" });
+        }
     };
 
     const inputStyle = { "--field-accent": theme.accent };
 
     return (
         <form onSubmit={onSubmit} noValidate data-testid={`${formId}-form`} className="space-y-8">
+            {!emailjsReady && (
+                <p
+                    data-testid={`${formId}-demo-banner`}
+                    role="status"
+                    className="inline-flex items-center gap-2 border border-dashed px-3 py-2 text-[11px] uppercase tracking-[0.16em] opacity-70"
+                >
+                    <Info size={13} /> Demo configuration — emails activate once EmailJS keys are added
+                </p>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
                 {fields.map((f) => (
                     <div key={f.name} className={f.type === "textarea" ? "md:col-span-2" : ""}>
@@ -117,37 +150,80 @@ export const DemoForm = ({ theme, fields, submitLabel, formId }) => {
             <div className="flex flex-col items-start gap-5">
                 <button
                     type="submit"
+                    disabled={status.type === "sending"}
                     data-testid={`${formId}-submit-button`}
-                    className="group relative overflow-hidden border px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] transition-colors duration-500"
+                    className="group relative overflow-hidden border px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] transition-colors duration-500 disabled:opacity-50 disabled:cursor-wait"
                     style={{ borderColor: theme.accent, color: theme.fg }}
                 >
                     <span
-                        className="absolute inset-0 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0"
+                        className="absolute inset-0 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0 group-disabled:translate-y-full"
                         style={{ background: theme.accent }}
                         aria-hidden="true"
                     />
-                    <span className="relative transition-colors duration-500 group-hover:text-[#0A0A0A]">
-                        {submitLabel}
+                    <span className="relative transition-colors duration-500 group-hover:text-[#0A0A0A] group-disabled:text-current">
+                        {status.type === "sending" ? "Sending…" : submitLabel}
                     </span>
                 </button>
 
-                {demoShown && (
-                    <motion.div
-                        data-testid={`${formId}-demo-notice`}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-start gap-3 border border-dashed p-4 text-sm leading-relaxed max-w-xl"
-                        style={{ borderColor: theme.accent }}
-                        role="status"
-                    >
-                        <Info size={18} className="mt-0.5 shrink-0" style={{ color: theme.accent }} />
-                        <p className="opacity-80">
-                            <strong className="font-semibold">Demonstration only.</strong> This is a static
-                            website — your enquiry has <em>not</em> been sent or stored. To reach us, please
-                            use the phone, WhatsApp or email options shown on this page.
-                        </p>
-                    </motion.div>
-                )}
+                <AnimatePresence mode="wait">
+                    {status.type === "demo" && (
+                        <motion.div
+                            key="demo"
+                            data-testid={`${formId}-demo-notice`}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="flex items-start gap-3 border border-dashed p-4 text-sm leading-relaxed max-w-xl"
+                            style={{ borderColor: theme.accent }}
+                            role="status"
+                        >
+                            <Info size={18} className="mt-0.5 shrink-0" style={{ color: theme.accent }} />
+                            <p className="opacity-80">
+                                <strong className="font-semibold">Demonstration only.</strong> EmailJS is not
+                                configured yet, so your enquiry has <em>not</em> been sent. It will be delivered
+                                to <span className="font-semibold">{venture}</span>'s email address as soon as the
+                                keys are added.
+                            </p>
+                        </motion.div>
+                    )}
+                    {status.type === "success" && (
+                        <motion.div
+                            key="success"
+                            data-testid={`${formId}-success-notice`}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="flex items-start gap-3 border p-4 text-sm leading-relaxed max-w-xl"
+                            style={{ borderColor: theme.accent }}
+                            role="status"
+                        >
+                            <CheckCircle2 size={18} className="mt-0.5 shrink-0" style={{ color: theme.accent }} />
+                            <p className="opacity-85">
+                                <strong className="font-semibold">Enquiry sent.</strong> Thank you — your message
+                                has been emailed to {venture}. We'll get back to you soon.
+                            </p>
+                        </motion.div>
+                    )}
+                    {status.type === "error" && (
+                        <motion.div
+                            key="error"
+                            data-testid={`${formId}-error-notice`}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="flex items-start gap-3 border p-4 text-sm leading-relaxed max-w-xl"
+                            style={{ borderColor: theme.accent }}
+                            role="alert"
+                        >
+                            <AlertCircle size={18} className="mt-0.5 shrink-0" style={{ color: theme.accent }} />
+                            <p className="opacity-85">
+                                <strong className="font-semibold">Could not send.</strong> Your enquiry was not
+                                delivered. Please try again in a moment, or reach us via the phone / WhatsApp
+                                options on this page.
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </form>
     );
