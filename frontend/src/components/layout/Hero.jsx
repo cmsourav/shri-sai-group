@@ -2,10 +2,12 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import MaskedLines from "../motion/MaskedLines";
 import Reveal from "../motion/Reveal";
+import { EASE } from "../../lib/anim";
 
 /*
- * Cinematic full-viewport hero.
- * Text sits bottom-left over a gently darkened, parallaxing photograph.
+ * Ultra-cinematic hero: oversized bleeding display type, slow-ken-burns
+ * image behind a light scrim, parallax drift on scroll, optional
+ * giant outlined word watermark, edge meta strip.
  */
 export const Hero = ({
     image,
@@ -14,55 +16,81 @@ export const Hero = ({
     lines,
     subtitle,
     children,
-    h1ClassName = "text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl",
+    giantWord,
+    accent = "#D4AF37",
+    h1ClassName = "text-[15vw] md:text-[9.5vw] lg:text-[8.5vw]",
 }) => {
     const ref = useRef(null);
     const reduce = useReducedMotion();
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.25]);
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+    const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "34%"]);
+    const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
     return (
-        <header ref={ref} className="relative min-h-[100svh] flex items-end overflow-hidden bg-black">
+        <header ref={ref} className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden bg-black">
             <motion.div style={reduce ? undefined : { y }} className="absolute inset-0">
-                <img
+                <motion.img
                     src={image}
                     alt={imageAlt}
-                    className="h-[118%] w-full object-cover"
                     fetchPriority="high"
+                    initial={{ scale: 1.14 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 2.4, ease: EASE }}
+                    className="h-[118%] w-full object-cover"
                 />
                 <div
                     className="absolute inset-0"
                     style={{
                         background:
-                            "linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.12) 40%, rgba(0,0,0,0.62) 100%)",
+                            "linear-gradient(180deg, rgba(4,7,15,0.42) 0%, rgba(4,7,15,0.18) 45%, rgba(4,7,15,0.72) 100%)",
                     }}
+                />
+                <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(90deg, rgba(4,7,15,0.35) 0%, transparent 55%)" }}
                 />
             </motion.div>
 
+            {giantWord && (
+                <span
+                    aria-hidden="true"
+                    className="absolute bottom-[2vw] left-0 right-0 text-center font-display italic font-light text-[24vw] leading-none text-transparent select-none pointer-events-none"
+                    style={{ WebkitTextStroke: "1px rgba(255,255,255,0.09)" }}
+                >
+                    {giantWord}
+                </span>
+            )}
+
             <motion.div
-                style={reduce ? undefined : { opacity }}
-                className="relative z-10 w-full px-6 md:px-12 lg:px-20 pb-20 md:pb-28 pt-44 text-[#FAFAFA]"
+                style={reduce ? undefined : { y: contentY, opacity }}
+                className="relative z-10 w-full px-6 md:px-12 lg:px-16 pb-24 md:pb-32 pt-48 text-[#F5F5F5]"
             >
                 {overline && (
-                    <Reveal>
-                        <p className="text-xs md:text-sm uppercase tracking-[0.28em] font-semibold opacity-80 mb-6">
+                    <Reveal variant="left" duration={0.8}>
+                        <p className="flex items-center gap-4 text-[11px] md:text-xs uppercase tracking-[0.4em] font-semibold mb-8" style={{ color: accent }}>
+                            <span className="inline-block h-px w-10 md:w-16" style={{ background: accent }} aria-hidden="true" />
                             {overline}
                         </p>
                     </Reveal>
                 )}
-                <h1 className={`font-display font-medium leading-[1.02] tracking-tight ${h1ClassName}`}>
-                    <MaskedLines lines={lines} delay={0.15} />
+                <h1 className={`font-display font-light leading-[0.92] tracking-[-0.02em] ${h1ClassName}`}>
+                    <MaskedLines lines={lines} delay={0.2} />
                 </h1>
                 {subtitle && (
-                    <Reveal delay={0.55}>
-                        <p className="mt-7 max-w-xl text-base md:text-lg leading-relaxed opacity-85">
+                    <Reveal delay={0.6} y={26}>
+                        <p className="mt-8 max-w-xl text-base md:text-lg leading-relaxed text-white/75 font-light">
                             {subtitle}
                         </p>
                     </Reveal>
                 )}
-                {children && <div className="mt-10">{children}</div>}
+                {children && <div className="mt-12">{children}</div>}
             </motion.div>
+
+            <div className="absolute bottom-0 inset-x-0 z-10 px-6 md:px-12 lg:px-16 pb-6 hidden md:flex items-center justify-between text-[10px] uppercase tracking-[0.35em] text-white/35">
+                <span>A Legacy of Trust</span>
+                <span>A Vision for Tomorrow</span>
+            </div>
         </header>
     );
 };

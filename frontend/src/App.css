@@ -1,10 +1,61 @@
-/* ————— Shri Sai Group — cinematic editorial system ————— */
+/* ————— Shri Sai Group — ultra-premium cinematic system v2 ————— */
 
 .font-display {
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: "Fraunces", Georgia, serif;
 }
 
-/* Film grain overlay — kills digital flatness */
+body {
+    cursor: none;
+}
+@media (pointer: coarse) {
+    body {
+        cursor: auto;
+    }
+}
+a, button, [role="button"], select, input, textarea, label {
+    cursor: none;
+}
+@media (pointer: coarse) {
+    a, button, [role="button"], select, input, textarea, label {
+        cursor: auto;
+    }
+}
+
+/* ————— Custom cursor ————— */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: #d4af37;
+    z-index: 200;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+.cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 9999px;
+    border: 1px solid rgba(212, 175, 55, 0.65);
+    z-index: 200;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.35s cubic-bezier(0.19, 1, 0.22, 1), height 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+        border-color 0.35s ease, background 0.35s ease;
+}
+.cursor-ring.is-hover {
+    width: 64px;
+    height: 64px;
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.9);
+}
+
+/* ————— Film grain overlay ————— */
 .grain::after {
     content: "";
     position: fixed;
@@ -13,11 +64,11 @@
     height: 200%;
     pointer-events: none;
     z-index: 90;
-    opacity: 0.028;
+    opacity: 0.032;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Animated underline links */
+/* ————— Animated underline links ————— */
 .link-underline {
     position: relative;
 }
@@ -39,7 +90,7 @@
     transform-origin: left;
 }
 
-/* Cinematic image hover zoom */
+/* ————— Cinematic image hover zoom ————— */
 .zoom-frame {
     overflow: hidden;
 }
@@ -51,7 +102,7 @@
     transform: scale(1.06);
 }
 
-/* Arrow nudge on hover */
+/* ————— Arrow nudge on hover ————— */
 .arrow-nudge svg {
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -59,7 +110,7 @@
     transform: translateX(6px);
 }
 
-/* Underline form fields */
+/* ————— Underline form fields ————— */
 .field-input {
     width: 100%;
     background: transparent;
@@ -86,14 +137,28 @@ input[type="date"].field-input::-webkit-calendar-picker-indicator {
     filter: invert(0.6);
 }
 
-/* Ghost display numerals */
+/* ————— Ghost display numerals ————— */
 .ghost-numeral {
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: "Fraunces", Georgia, serif;
     line-height: 0.8;
     user-select: none;
 }
 
-/* Scroll indicator pulse */
+/* ————— Marquee ————— */
+@keyframes marquee-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-x var(--marquee-duration, 36s) linear infinite;
+}
+.marquee-track.reverse {
+    animation-direction: reverse;
+}
+
+/* ————— Scroll indicator pulse ————— */
 @keyframes scroll-hint {
     0% { transform: translateY(0); opacity: 1; }
     70% { transform: translateY(14px); opacity: 0; }
@@ -103,7 +168,13 @@ input[type="date"].field-input::-webkit-calendar-picker-indicator {
     animation: scroll-hint 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
-/* Reduced motion */
+/* ————— Hero panel shutter (intro) ————— */
+@keyframes hero-shutter {
+    from { transform: scaleY(1); }
+    to { transform: scaleY(0); }
+}
+
+/* ————— Reduced motion ————— */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -112,5 +183,8 @@ input[type="date"].field-input::-webkit-calendar-picker-indicator {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+    body, a, button, [role="button"], select, input, textarea, label {
+        cursor: auto !important;
     }
 }

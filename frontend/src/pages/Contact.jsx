@@ -32,16 +32,16 @@ const FORM_FIELDS = [
 ];
 
 const ContactRow = ({ icon: Icon, label, value, href, testId }) => (
-    <li className="flex items-start gap-5 border-b border-white/10 pb-7" data-testid={testId}>
-        <Icon size={18} className="mt-1 shrink-0" style={{ color: T.accent }} />
+    <li className="group flex items-start gap-5 border-b border-white/10 pb-8" data-testid={testId}>
+        <Icon size={18} className="mt-1 shrink-0 transition-transform duration-400 group-hover:-translate-y-0.5" style={{ color: T.accent }} />
         <div>
-            <p className="text-xs uppercase tracking-[0.22em] font-semibold text-white/50 mb-1.5">{label}</p>
+            <p className="text-[10px] uppercase tracking-[0.28em] font-semibold text-white/45 mb-2">{label}</p>
             {href ? (
-                <a href={href} className="link-underline text-lg" target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+                <a href={href} className="link-underline text-lg font-light" target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
                     {value}
                 </a>
             ) : (
-                <p className="text-lg text-white/40 italic">{value}</p>
+                <p className="text-lg text-white/40 italic font-light">{value}</p>
             )}
         </div>
     </li>
@@ -55,36 +55,41 @@ const Contact = () => (
         />
 
         {/* Editorial hero */}
-        <header className="min-h-[70svh] flex items-end px-6 md:px-12 lg:px-20 pb-20 pt-44 relative overflow-hidden">
-            <span className="ghost-numeral absolute -top-10 right-0 text-[16rem] md:text-[26rem] text-white/5 hidden md:block" aria-hidden="true">
-                C
+        <header className="min-h-[80svh] flex items-end px-6 md:px-12 lg:px-16 pb-20 pt-48 relative overflow-hidden">
+            <span
+                className="absolute -top-[2vw] right-0 font-display italic font-light text-[30vw] leading-none text-transparent select-none pointer-events-none hidden md:block"
+                style={{ WebkitTextStroke: "1px rgba(212,175,55,0.1)" }}
+                aria-hidden="true"
+            >
+                Talk
             </span>
             <div className="relative">
-                <Reveal>
-                    <p className="text-xs md:text-sm uppercase tracking-[0.28em] font-semibold mb-8" style={{ color: T.accent }}>
+                <Reveal variant="left" duration={0.8}>
+                    <p className="flex items-center gap-4 text-[11px] md:text-xs uppercase tracking-[0.4em] font-semibold mb-9" style={{ color: T.accent }}>
+                        <span className="inline-block h-px w-10 md:w-14" style={{ background: T.accent }} aria-hidden="true" />
                         Contact Shri Sai Group
                     </p>
                 </Reveal>
-                <h1 className="font-display font-medium text-6xl md:text-8xl lg:text-9xl leading-[1.0] tracking-tight">
+                <h1 className="font-display font-light text-[20vw] md:text-[13vw] lg:text-[11vw] leading-[0.88] tracking-tight">
                     <MaskedLines lines={["Let's talk."]} />
                 </h1>
-                <Reveal delay={0.25}>
-                    <p className="mt-8 max-w-xl text-base md:text-lg leading-relaxed text-white/65">
+                <Reveal delay={0.3}>
+                    <p className="mt-9 max-w-xl text-base md:text-lg leading-relaxed text-white/65 font-light">
                         One doorway to the whole group — and to each of its four ventures.
                     </p>
                 </Reveal>
             </div>
         </header>
 
-        <section className="px-6 md:px-12 lg:px-20 pb-28 md:pb-40" data-testid="contact-main-section">
+        <section className="px-6 md:px-12 lg:px-16 pb-32 md:pb-44" data-testid="contact-main-section">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                 {/* Details */}
                 <div className="lg:col-span-5">
                     <Reveal>
-                        <h2 className="font-display font-medium text-3xl md:text-4xl tracking-tight mb-10">Reach us directly</h2>
+                        <h2 className="font-display font-light text-4xl md:text-5xl tracking-tight mb-12">Reach us directly</h2>
                     </Reveal>
                     <Reveal delay={0.1}>
-                        <ul className="space-y-7">
+                        <ul className="space-y-8">
                             <ContactRow icon={Phone} label="Official phone" value="Phone number — to be updated" testId="contact-phone" />
                             <ContactRow icon={Mail} label="Official email" value="Email address — to be updated" testId="contact-email" />
                             <ContactRow icon={MapPin} label="Office address" value="Office address & Google Maps link — to be updated" testId="contact-address" />
@@ -94,18 +99,18 @@ const Contact = () => (
                     </Reveal>
 
                     <Reveal delay={0.2}>
-                        <div className="mt-14">
-                            <h3 className="text-xs uppercase tracking-[0.25em] font-semibold text-white/50 mb-6">Or go straight to a venture</h3>
-                            <ul className="space-y-3">
+                        <div className="mt-16">
+                            <h3 className="text-[10px] uppercase tracking-[0.3em] font-semibold text-white/45 mb-7">Or go straight to a venture</h3>
+                            <ul className="space-y-1 border-t border-white/10">
                                 {VENTURES.map((v) => (
-                                    <li key={v.id}>
+                                    <li key={v.id} className="border-b border-white/10">
                                         <Link
                                             to={v.path}
                                             data-testid={`contact-venture-${v.id}`}
-                                            className="group inline-flex items-center gap-3 text-white/70 hover:text-[#D4AF37] transition-colors duration-300"
+                                            className="group flex items-center justify-between py-4 font-display font-light text-xl text-white/70 hover:text-[#D4AF37] hover:pl-3 transition-all duration-400"
                                         >
                                             {v.name}
-                                            <ArrowRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                                            <ArrowRight size={15} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-400" />
                                         </Link>
                                     </li>
                                 ))}
@@ -117,8 +122,8 @@ const Contact = () => (
                 {/* Form */}
                 <div className="lg:col-span-7 lg:border-l lg:border-white/10 lg:pl-16">
                     <Reveal>
-                        <h2 className="font-display font-medium text-3xl md:text-4xl tracking-tight mb-4">General enquiry</h2>
-                        <p className="text-sm text-white/50 mb-12 max-w-lg leading-relaxed">
+                        <h2 className="font-display font-light text-4xl md:text-5xl tracking-tight mb-4">General enquiry</h2>
+                        <p className="text-sm text-white/50 mb-14 max-w-lg leading-relaxed font-light">
                             This form emails your enquiry straight to the group's inbox via EmailJS once the
                             keys are configured — until then it shows a clearly labelled demonstration notice.
                         </p>

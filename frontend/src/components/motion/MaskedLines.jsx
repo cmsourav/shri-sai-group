@@ -20,12 +20,12 @@ export const MaskedLines = ({ lines, delay = 0, className = "", lineClassName = 
     return (
         <span ref={ref} className={className}>
             {lines.map((line, i) => (
-                <span key={i} className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
+                <span key={i} className="block overflow-hidden pb-[0.1em] -mb-[0.1em]">
                     <motion.span
                         className={`block ${lineClassName}`}
-                        initial={{ y: "110%" }}
-                        animate={show ? { y: "0%" } : { y: "110%" }}
-                        transition={{ duration: 1, ease: EASE, delay: delay + i * 0.13 }}
+                        initial={{ y: "115%", rotate: 1.5 }}
+                        animate={show ? { y: "0%", rotate: 0 } : { y: "115%", rotate: 1.5 }}
+                        transition={{ duration: 1.1, ease: EASE, delay: delay + i * 0.14 }}
                     >
                         {line}
                     </motion.span>

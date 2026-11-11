@@ -5,6 +5,8 @@ import Lenis from "lenis";
 import "@/App.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
+import Preloader from "@/components/layout/Preloader";
+import Cursor from "@/components/layout/Cursor";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Trust from "@/pages/Trust";
@@ -59,8 +61,10 @@ const AnimatedRoutes = () => {
 function App() {
     useLenis();
     return (
-        <div className="grain bg-[#050A15] text-[#FAFAFA] min-h-screen">
+        <div className="grain bg-[#050A14] text-[#F5F5F5] min-h-screen">
             <BrowserRouter>
+                <Preloader />
+                <Cursor />
                 <ScrollToTop />
                 <Nav />
                 <AnimatedRoutes />

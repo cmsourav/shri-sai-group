@@ -1,207 +1,185 @@
 {
   "typography": {
-    "heading_font": "Cormorant Garamond, serif",
-    "body_font": "Manrope, sans-serif",
-    "accent_font": "Manrope, sans-serif",
-    "scale": {
-      "h1": "text-5xl md:text-7xl lg:text-[6rem] leading-[1.1] tracking-tighter",
-      "h2": "text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight",
-      "h3": "text-2xl md:text-3xl lg:text-4xl leading-snug",
-      "body": "text-base md:text-lg leading-relaxed text-opacity-80",
-      "overline": "text-xs md:text-sm uppercase tracking-[0.2em] font-semibold"
+    "fonts": {
+      "heading": "Cormorant Garamond, serif",
+      "body": "Satoshi, sans-serif",
+      "display": "Cormorant Garamond, serif",
+      "mono": "JetBrains Mono, monospace"
     },
-    "rules": "Headings must never be pure bold; prefer regular or medium weights to maintain elegance. Tracking should be tight for large headings. Overlines must have wide tracking. Ensure 4.5:1 contrast ratio."
+    "scale": {
+      "h1": "text-5xl sm:text-6xl lg:text-[5rem] xl:text-[6rem] leading-[0.9] tracking-tighter",
+      "h2": "text-4xl sm:text-5xl lg:text-6xl leading-none tracking-tight",
+      "h3": "text-2xl sm:text-3xl lg:text-4xl leading-tight",
+      "h4": "text-xl sm:text-2xl leading-tight",
+      "body": "text-base sm:text-lg leading-relaxed",
+      "small": "text-sm tracking-wide uppercase",
+      "overline": "text-xs tracking-[0.2em] uppercase font-medium"
+    },
+    "guidelines": "Use oversized, expressive serif typography for headings to convey legacy and premium quality. Contrast with geometric sans-serif for body text. Headings must have extremely tight line-height (leading-[0.9] or leading-none) and negative tracking."
   },
   "colors": {
-    "parent_brand": {
-      "background": "#050A15",
-      "foreground": "#FAFAFA",
-      "accent": "#D4AF37",
-      "surface": "#0B1221",
-      "mode": "dark"
+    "parent": {
+      "background": "#050A14",
+      "foreground": "#F5F5F5",
+      "primary": "#D4AF37",
+      "muted": "#1A2138",
+      "border": "#2A314A"
     },
-    "sai_neravu_trust": {
-      "background": "#FDFBF7",
-      "foreground": "#2C241B",
-      "accent": "#D36C45",
-      "surface": "#F4EFE6",
-      "mode": "light"
+    "trust": {
+      "accent": "#E07A5F",
+      "background": "#FFF9F5",
+      "foreground": "#2D2622"
     },
-    "kira_boutique": {
-      "background": "#F9F6F0",
-      "foreground": "#3E2723",
-      "accent": "#8C4A52",
-      "surface": "#F2EBE5",
-      "mode": "light"
+    "boutique": {
+      "accent": "#8A3043",
+      "background": "#FAFAFA",
+      "foreground": "#1A1516"
     },
-    "ky_travels": {
-      "background": "#0F172A",
-      "foreground": "#F8FAFC",
-      "accent": "#E25822",
-      "surface": "#1E293B",
-      "mode": "dark"
+    "travels": {
+      "accent": "#3D5A80",
+      "background": "#08101C",
+      "foreground": "#F2F4F7"
     },
-    "shri_sai_tyre": {
-      "background": "#121212",
-      "foreground": "#E0E0E0",
-      "accent": "#D32F2F",
-      "surface": "#1E1E1E",
-      "mode": "dark"
-    }
+    "tyre": {
+      "accent": "#F2C94C",
+      "background": "#0F0F0F",
+      "foreground": "#E0E0E0"
+    },
+    "guidelines": "Parent site is dark and cinematic (Deep Navy and Gold). Trust and Boutique use warm, light themes to convey human connection and elegance. Travels and Tyre use dark, industrial/cinematic themes."
   },
   "visual_enhancers": {
-    "textures": "Subtle noise/grain overlay globally to kill digital flatness and enhance cinematic feel (opacity 2-3%).",
-    "borders": "1px borders with 10-15% opacity to structure sections without heavy shadows.",
-    "shadows": "Minimal. Use ambient diffuse shadows (e.g., shadow-[0_8px_32px_rgba(0,0,0,0.05)]) for floating elements.",
-    "radius": "Sharp edges (rounded-none) or very subtle (rounded-sm) for a high-end editorial feel."
+    "shadows": {
+      "ambient": "shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]",
+      "glow": "shadow-[0_0_40px_-10px_rgba(212,175,55,0.2)]"
+    },
+    "borders": {
+      "subtle": "border border-white/10",
+      "accent": "border-l-2 border-primary"
+    },
+    "overlays": {
+      "cinematic_dark": "bg-gradient-to-b from-black/20 via-black/40 to-[#050A14]",
+      "glass": "backdrop-blur-xl bg-white/5 border border-white/10"
+    }
   },
-  "component_name": {
-    "navigation": "Premium Glassmorphism header. Backdrop blur 24px, subtle bottom border. Desktop: full links. Mobile: elegant fullscreen menu with staggered link reveals.",
-    "buttons": "Sharp rectangular buttons. Hover effect: slight scale up, background color fill from bottom or left, text color inversion. High contrast.",
-    "forms": "Minimalist forms. Underline inputs (border-b only) instead of full borders. Elegant focus states."
+  "motion_language": {
+    "preloader": "Dark screen with minimal gold outline logo drawing, splitting open vertically.",
+    "hero_entrance": "Split-text reveal (words/characters sliding up from masked overflow hidden div), hero image scaling from 1.15 to 1.0 over 2 seconds with ease-out.",
+    "scroll_reveals": "Staggered fade-up for content blocks (Y: 40px -> 0, Opacity: 0 -> 1) triggered on scroll. Use Framer Motion once: true.",
+    "horizontal_scroll": "Pinned container for venture showcase. As user scrolls vertically, the inner container translates horizontally.",
+    "micro_interactions": "Magnetic effect on major CTAs, custom dot cursor that expands over clickable elements, slow smooth page transitions via AnimatePresence."
   },
-  "grids": {
-    "system": "12-column CSS Grid. Avoid generic 3-column equal cards. Use bento layouts or asymmetric 6/6, 7/5, 8/4 splits.",
-    "showcase_grid": "For venture showcase, use full-width stacked sections with sticky or parallax imagery, rather than a card grid."
+  "layout_principles": {
+    "structure": "Editorial asymmetry. Avoid perfectly centered bootstrap grids. Use overlapping images, text bleeding off-canvas, and massive negative space (py-24, py-32).",
+    "grid": "12-column grid. Example: text spans col-span-5, image spans col-span-6 starting from col-start-7.",
+    "mobile": "Stack cleanly on mobile. Remove horizontal scroll on mobile (convert to vertical list). Restrict image heights to max-h-[80vh]."
   },
-  "layouts": {
-    "spacing": "Generous. Use py-24 to py-32 for section padding. Negative space is a premium design tool.",
-    "asymmetry": "Offset text blocks from images. Allow images to bleed to the edge of the screen.",
-    "heroes": "Full viewport (min-h-screen). Background image with gradient overlay (max 50% opacity to preserve image clarity). Central or bottom-left aligned massive typography."
-  },
-  "motion": {
-    "scrolling": "Smooth scrolling is MANDATORY via @studio-freight/react-lenis.",
-    "reveals": "Framer Motion for scroll-triggered masked heading reveals (overflow-hidden, translateY 100% to 0).",
-    "parallax": "Subtle y-axis parallax on hero images and large background images on scroll.",
-    "micro_interactions": "Image scale up (1.05) on hover within an overflow-hidden container. Button arrow translations."
+  "component_path": {
+    "forms": "Use Shadcn Form, Input, Textarea for EmailJS forms. Strip default styling to match cinematic dark or light mode.",
+    "galleries": "Custom Framer Motion masonry or bento grids with lightbox functionality.",
+    "buttons": "Custom magnetic buttons with animated borders and hover fills, rather than default Shadcn buttons."
   },
   "accessibility": {
-    "contrast": "All text must pass WCAG AA (4.5:1).",
-    "reduced_motion": "Respect prefers-reduced-motion media query. Disable parallax and heavy transforms if true.",
-    "testing": "All interactive elements MUST include data-testid attribute (e.g., data-testid='contact-submit-button')."
-  },
-  "media": {
-    "images": "High-quality, art-directed photography. Consistent color grading (moody for dark themes, warm/soft for light themes).",
-    "video": "N/A - focusing on static cinematic images."
-  },
-  "3d_libraries": {
-    "recommendation": "Not strictly required for this brief as art-directed 2D photography + Framer Motion parallax provides the requested cinematic editorial feel. Focus on high-end 2D DOM animation."
+    "motion": "Respect prefers-reduced-motion: disable parallax, replace horizontal scroll with simple fade-ins.",
+    "contrast": "Ensure minimum 4.5:1 ratio for text over images by using robust gradients/scrims (bg-black/40).",
+    "testing": "All CTAs, forms, and venture links MUST have data-testid attributes."
   },
   "image_urls": [
     {
-      "url": "https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzk0Mjg4MTMxfDA&ixlib=rb-4.1.0&q=85",
-      "description": "Curved stainless steel modern corporate architecture",
-      "category": "Corporate Hero Background"
+      "url": "https://images.unsplash.com/photo-1766445318570-1dc4bf3f5d79?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBsaWdodCUyMGNpbmVtYXRpY3xlbnwwfHx8fDE3OTQzNjEyMDB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Curved wooden ceiling with warm ambient lighting",
+      "category": "parent_hero"
     },
     {
-      "url": "https://images.unsplash.com/photo-1630068846062-3ffe78aa5049?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHw0fHxjb21tdW5pdHklMjBoZWxwaW5nJTIwaGFuZHMlMjBjaGFyaXR5fGVufDB8fHx8MTc5NDI4ODEzMXww&ixlib=rb-4.1.0&q=85",
-      "description": "Team stacking hands together in unity",
-      "category": "Sai Neravu Trust Hero"
+      "url": "https://images.unsplash.com/photo-1527576539890-dfa815648363?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBsaWdodCUyMGNpbmVtYXRpY3xlbnwwfHx8fDE3OTQzNjEyMDB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Curved facade architecture",
+      "category": "parent_about"
     },
     {
-      "url": "https://images.unsplash.com/photo-1579207238889-e1122bfc0c89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHw0fHxpbnRyaWNhdGUlMjBlbWJyb2lkZXJ5JTIwZmFzaGlvbiUyMGRldGFpbHN8ZW58MHx8fHwxNzk0Mjg4MTMxfDA&ixlib=rb-4.1.0&q=85",
-      "description": "Intricate floral embroidery detail on garment",
-      "category": "KIRA Boutique Hero"
+      "url": "https://images.unsplash.com/photo-1556139930-c23fa4a4f934?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTV8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMGx1eHVyeSUyMGVkaXRvcmlhbCUyMGltYWdlcnl8ZW58MHx8fHwxNzk0MzYxMTk5fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Close up black and brown abstract painting",
+      "category": "founder_texture"
     },
     {
-      "url": "https://images.unsplash.com/photo-1546955870-9fc9e5534349?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHw0fHx0b3VyJTIwYnVzJTIwaGlnaHdheSUyMHN1bnNldHxlbnwwfHx8fDE3OTQyODgxMzF8MA&ixlib=rb-4.1.0&q=85",
-      "description": "Blue luxury bus on asphalt road during golden hour",
-      "category": "KY Travels Hero"
+      "url": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwxfHxkYXJrJTIwY2luZW1hdGljJTIwdGV4dHVyZSUyMGJhY2tkcm9wfGVufDB8fHx8MTc5NDM2MTIwMHww&ixlib=rb-4.1.0&q=85",
+      "description": "dark textured plaster wall",
+      "category": "background_texture"
     },
     {
-      "url": "https://images.unsplash.com/photo-1792792944402-5e94ce198dce?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHwxfHxjYXIlMjBtZWNoYW5pYyUyMHRpcmUlMjB3b3Jrc2hvcHxlbnwwfHx8fDE3OTQyODgxMzF8MA&ixlib=rb-4.1.0&q=85",
-      "description": "Person in red gloves mounting a car tire onto a wheel rim",
-      "category": "Shri Sai Tyre Hero"
+      "url": "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjB3YXJtdGglMjB2b2x1bnRlZXJzJTIwY2hpbGRyZW58ZW58MHx8fHwxNzk0MzYxMjAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Women packing paper bags",
+      "category": "trust_hero"
     },
     {
-      "url": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwyfHxjb21tdW5pdHklMjBoZWxwaW5nJTIwaGFuZHMlMjBjaGFyaXR5fGVufDB8fHx8MTc5NDI4ODEzMXww&ixlib=rb-4.1.0&q=85",
-      "description": "Hands formed together with red heart paint",
-      "category": "Sai Neravu Trust Gallery"
+      "url": "https://images.unsplash.com/photo-1729283530749-8bb89bb618e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwyfHxjb21tdW5pdHklMjB3YXJtdGglMjB2b2x1bnRlZXJzJTIwY2hpbGRyZW58ZW58MHx8fHwxNzk0MzYxMjAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Little girl wrapped up in blanket",
+      "category": "trust_gallery"
     },
     {
-      "url": "https://images.unsplash.com/photo-1680034976848-d9fe95466aba?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwxfHxpbnRyaWNhdGUlMjBlbWJyb2lkZXJ5JTIwZmFzaGlvbiUyMGRldGFpbHN8ZW58MHx8fHwxNzk0Mjg4MTMxfDA&ixlib=rb-4.1.0&q=85",
-      "description": "Close up of an embroidered object on cloth",
-      "category": "KIRA Boutique Gallery"
+      "url": "https://images.unsplash.com/photo-1744502672203-98316831f121?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwyfHxlbWJyb2lkZXJ5JTIwY2xvc2UlMjBkZXRhaWwlMjBzaWxrJTIwYXRlbGllcnxlbnwwfHx8fDE3OTQzNjEyMDB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Elegant hand rests against decorative white surface with silk",
+      "category": "boutique_hero"
     },
     {
-      "url": "https://images.unsplash.com/photo-1598710877888-edaa20acfb92?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHx0b3VyJTIwYnVzJTIwaGlnaHdheSUyMHN1bnNldHxlbnwwfHx8fDE3OTQyODgxMzF8MA&ixlib=rb-4.1.0&q=85",
-      "description": "Red and yellow bus on road during daytime",
-      "category": "KY Travels Gallery"
+      "url": "https://images.unsplash.com/photo-1705970268643-ee5981567df5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwxfHxlbWJyb2lkZXJ5JTIwY2xvc2UlMjBkZXRhaWwlMjBzaWxrJTIwYXRlbGllcnxlbnwwfHx8fDE3OTQzNjEyMDB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "red dress hanging with spools of thread",
+      "category": "boutique_gallery"
     },
     {
-      "url": "https://images.unsplash.com/photo-1786489623872-2ebdfe51297c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHw0fHxjYXIlMjBtZWNoYW5pYyUyMHRpcmUlMjB3b3Jrc2hvcHxlbnwwfHx8fDE3OTQyODgxMzF8MA&ixlib=rb-4.1.0&q=85",
-      "description": "A person stacking tires in an auto shop",
-      "category": "Shri Sai Tyre Gallery"
+      "url": "https://images.unsplash.com/photo-1790360740621-41c1861d78e9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwxfHxjb2FjaCUyMGJ1cyUyMG9uJTIwaGlnaHdheSUyMGR1c2t8ZW58MHx8fHwxNzk0MzYxMjAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Bus on road leading toward large mountain",
+      "category": "travels_hero"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1730127143554-4342739f2732?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwyfHxjb2FjaCUyMGJ1cyUyMG9uJTIwaGlnaHdheSUyMGR1c2t8ZW58MHx8fHwxNzk0MzYxMjAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "White bus driving down street at night",
+      "category": "travels_gallery"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1571335746824-742511d49bce?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwyfHxjYXIlMjB0aXJlJTIwbWVjaGFuaWMlMjBkYXJrfGVufDB8fHx8MTc5NDM2MTIxMXww&ixlib=rb-4.1.0&q=85",
+      "description": "Four vehicle tires",
+      "category": "tyre_hero"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1645445522156-9ac06bc7a767?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwxfHxjYXIlMjB0aXJlJTIwbWVjaGFuaWMlMjBkYXJrfGVufDB8fHx8MTc5NDM2MTIxMXww&ixlib=rb-4.1.0&q=85",
+      "description": "Man working on tire in garage",
+      "category": "tyre_gallery"
     }
   ],
+  "instructions_to_main_agent": "Execute a full visual overhaul to Awwwards-level cinematic standard. The project is static (React + Tailwind + Framer Motion). Content remains identical; your job is strictly visual orchestration. Heavily rely on 'Cormorant Garamond' for headings to establish an editorial legacy tone. Leverage Framer Motion for scroll-driven storytelling: split-text reveals, subtle parallax, and horizontal scrolling for the ventures showcase. Make use of 'lenis' for smooth scrolling. Implement custom styling instead of default Shadcn for layout elements to achieve an editorial broken-grid look. Keep mobile performant by stripping intense WebGL/parallax effects on small viewports.",
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": "Do not center align the app container. Create depth with z-index and overlays. Use glass-morphism sparingly and precisely (not everywhere). Do not use AI emojis. Implement micro-animations on all interactive elements. All CTAs and navigation elements must carry data-testid. Use generous spacing (py-24, py-32). NEVER use placeholder URLs for images; strictly map the provided image_urls to their respective categories.",
   "build_manifest": {
-    "direction": {
-      "app_type": "marketing_site",
-      "ambition": "A4 SHOWPIECE",
-      "mode": "hybrid",
-      "rail": "enquiry",
-      "spine": ["Home", "About", "Sai Neravu Trust", "KIRA Boutique", "KY Travels", "Shri Sai Tyre", "Contact"],
-      "name": "SHRI SAI GROUP",
-      "tone": "Premium Cinematic Corporate",
-      "axes": ["Cinematic", "Editorial", "Immersive"]
-    },
     "tone_tokens": {
-      "fonts": {
-        "heading": "Cormorant Garamond, serif",
-        "body": "Manrope, sans-serif",
-        "accent": "Manrope, sans-serif"
+      "typography": {
+        "display": "Cormorant Garamond",
+        "body": "Satoshi",
+        "scale_steps": [
+          "text-xs",
+          "text-sm",
+          "text-base",
+          "text-xl",
+          "text-3xl",
+          "text-5xl",
+          "text-7xl"
+        ]
       },
-      "type_scale": {
-        "h1": "text-5xl md:text-7xl lg:text-[6rem] leading-[1.1] tracking-tighter",
-        "h2": "text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight",
-        "h3": "text-2xl md:text-3xl lg:text-4xl leading-snug",
-        "body": "text-base md:text-lg leading-relaxed",
-        "overline": "text-xs md:text-sm uppercase tracking-[0.2em] font-semibold"
+      "colors": {
+        "navy": "#0A1128",
+        "gold": "#D4AF37",
+        "charcoal": "#0F0F0F",
+        "offwhite": "#F5F5F5"
       },
-      "spacing": "Generous (p-8, p-12, p-24, p-32). Standard section gap is py-24 or py-32.",
-      "themes": {
-        "parent": { "bg": "#050A15", "text": "#FAFAFA", "accent": "#D4AF37", "surface": "#0B1221", "mode": "dark" },
-        "trust": { "bg": "#FDFBF7", "text": "#2C241B", "accent": "#D36C45", "surface": "#F4EFE6", "mode": "light" },
-        "boutique": { "bg": "#F9F6F0", "text": "#3E2723", "accent": "#8C4A52", "surface": "#F2EBE5", "mode": "light" },
-        "travels": { "bg": "#0F172A", "text": "#F8FAFC", "accent": "#E25822", "surface": "#1E293B", "mode": "dark" },
-        "tyre": { "bg": "#121212", "text": "#E0E0E0", "accent": "#D32F2F", "surface": "#1E1E1E", "mode": "dark" }
-      },
-      "radius": "rounded-none or max rounded-sm"
+      "spacing_system": "Use wide gaps (gap-12 to gap-24) and large vertical padding (py-32 for standard sections)."
     },
-    "conversion_wiring": {
-      "trust_cta": {"type": "donate", "location": "Trust Page Support Section", "action": "Show QR Placeholder and enlarge/download/copy UPI controls"},
-      "boutique_cta": {"type": "booking", "location": "Boutique Page", "action": "Open/Scroll to Appointment Enquiry Form (demo state)"},
-      "travels_cta": {"type": "booking", "location": "Travels Page", "action": "Visibly disabled 'BOOK TICKETS' button until URL supplied"},
-      "tyre_cta": {"type": "form", "location": "Tyre Page", "action": "Customer Enquiry Form"},
-      "contact_cta": {"type": "form", "location": "Contact Page", "action": "Main Enquiry Form with demo validation state"}
+    "motion_language": {
+      "hero_entrance": "Staggered text reveal + slow image scale down.",
+      "scroll_reveals": "Fade up and slightly translate Y (40px) on viewport entry.",
+      "ventures_showcase": "Horizontal scroll sequence mapped to vertical scroll progress."
     },
-    "content_slots": [
-      {"slot": "tagline_primary", "text": "A Legacy of Trust. A Vision for Tomorrow.", "source": "brief"},
-      {"slot": "tagline_secondary", "text": "Diversified Ventures. Shared Values.", "source": "brief"},
-      {"slot": "founder_name", "text": "Kishor Anchan Manchi", "source": "brief"},
-      {"slot": "founder_photo", "text": "Typographic Treatment", "source": "placeholder"},
-      {"slot": "phone", "text": "+91 XXXXX XXXXX", "source": "placeholder"},
-      {"slot": "email", "text": "contact@shrisaigroup.placeholder", "source": "placeholder"},
-      {"slot": "address", "text": "[Office Address Placeholder]", "source": "placeholder"},
-      {"slot": "upi_id", "text": "placeholder@upi", "source": "placeholder"},
-      {"slot": "qr_code", "text": "QR Code Placeholder", "source": "placeholder"},
-      {"slot": "booking_url", "text": "#", "source": "placeholder"},
-      {"slot": "routes", "text": "Route A to Route B", "source": "placeholder"},
-      {"slot": "brands", "text": "Brand A, Brand B", "source": "placeholder"},
-      {"slot": "hours", "text": "Mon-Sat: 9AM - 6PM", "source": "placeholder"}
-    ],
-    "fabrication_guardrails": [
-      "NO invented statistics, ratings, or review counts.",
-      "NO invented awards or certifications.",
-      "NO invented founding or copyright years.",
-      "NO invented press mentions or named clients.",
-      "NO invented testimonials."
-    ],
-    "locale": {
-      "language": "en-IN",
-      "currency": "INR"
-    }
-  },
-  "instructions_to_main_agent": "Build a premium, editorial, cinematic corporate site. Use Framer Motion for scroll reveals and Lenis for smooth scrolling. Implement dynamic CSS variables to shift the color theme per venture page (e.g., body background changes from Parent Dark to Trust Light). Follow the component spacing and negative space rules religiously. Do not use standard Shadcn card layouts; build custom raw HTML/Tailwind asymmetric layouts for the venture showcase. All forms must be frontend validation only with explicit demo state. All placeholders must remain visibly placeholders.",
-  "UNIVERSAL GUIDELINES FOR MAIN AGENT": "1. Do not converge toward generic outputs; avoid AI slop. 2. Implement deep layered design with z-index hierarchy and glass-morphism. 3. NEVER apply universal transition (`transition: all`). 4. DO NOT center align the app container. 5. Use modern buttons. 6. Provide micro-animations for all interactions. 7. Use 2-3x more spacing than comfortable. 8. ALL unverified details must be placeholders. 9. Create .js files, not .tsx. 10. Add `data-testid` to all interactive elements."
+    "layout_principles": {
+      "editorial_asymmetry": true,
+      "oversized_type": true,
+      "full_bleed": true
+    },
+    "curated_cinematic_images": "Image mapping is provided in the image_urls array, covering all specified ventures, founder textures, and hero sections."
+  }
 }
