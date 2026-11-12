@@ -5,7 +5,7 @@ Premium, cinematic, fully responsive STATIC (frontend-only) corporate website fo
 
 ## Architecture
 - React 19 (CRA/craco) + react-router-dom 7 + Tailwind + framer-motion 11 + lenis (smooth scroll) + lucide-react
-- No backend used. Frontend-only static site.
+- FRONTEND-ONLY: /app/backend deleted (2026-11-12), backend + mongodb supervisor programs stopped, REACT_APP_BACKEND_URL removed from frontend/.env (was never referenced in src). Site runs 100% on the CRA dev server; emails via client-side EmailJS only.
 - Key files: src/App.js (routes + Lenis + AnimatePresence transitions), src/lib/site.js (themes, images, ventures, placeholder contacts), src/components/{layout/Nav, layout/Footer, layout/Hero, motion/Reveal, motion/MaskedLines, motion/ParallaxImage, shared/Lightbox, shared/DemoForm, shared/CtaButton, shared/ContactInvite, shared/PlaceholderChip, Seo}
 - Pages: Home, About, Trust, Boutique, Travels, Tyre, Contact (7 routes)
 - Per-venture theme tokens (parent dark gold, trust warm light, boutique blush light, travels navy orange, tyre charcoal red)
