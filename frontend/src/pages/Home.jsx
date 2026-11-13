@@ -12,7 +12,7 @@ import { CtaButton } from "@/components/shared/CtaButton";
 import Marquee from "@/components/shared/Marquee";
 import HorizontalShowcase from "@/components/shared/HorizontalShowcase";
 import ExpandingVentures from "@/components/shared/ExpandingVentures";
-import { THEMES, IMG, VENTURES, FOUNDER } from "@/lib/site";
+import { THEMES, IMG, VIDEO, VENTURES, FOUNDER } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.parent;
@@ -71,6 +71,7 @@ const Home = () => (
         {/* ————— Cinematic hero ————— */}
         <Hero
             image={IMG.corporate}
+            video={VIDEO.corporate}
             imageAlt="Cinematic modern architecture representing a diversified business group"
             overline="Shri Sai Group"
             lines={["A Legacy of Trust.", "A Vision for Tomorrow."]}

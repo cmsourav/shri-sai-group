@@ -12,6 +12,7 @@ import { EASE } from "../../lib/anim";
 export const Hero = ({
     image,
     imageAlt = "",
+    video,
     overline,
     lines,
     subtitle,
@@ -31,25 +32,42 @@ export const Hero = ({
     return (
         <header ref={ref} className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden bg-black">
             <motion.div style={reduce ? undefined : { y }} className="absolute inset-0">
-                <motion.img
-                    src={image}
-                    alt={imageAlt}
-                    fetchPriority="high"
-                    initial={{ scale: 1.14 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 2.4, ease: EASE }}
-                    className="h-[118%] w-full object-cover"
-                />
+                {video && !reduce ? (
+                    <motion.video
+                        src={video}
+                        poster={image}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        aria-label={imageAlt}
+                        initial={{ scale: 1.14 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 2.4, ease: EASE }}
+                        className="h-[118%] w-full object-cover"
+                    />
+                ) : (
+                    <motion.img
+                        src={image}
+                        alt={imageAlt}
+                        fetchPriority="high"
+                        initial={{ scale: 1.14 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 2.4, ease: EASE }}
+                        className="h-[118%] w-full object-cover"
+                    />
+                )}
                 <div
                     className="absolute inset-0"
                     style={{
                         background:
-                            "linear-gradient(180deg, rgba(4,7,15,0.42) 0%, rgba(4,7,15,0.18) 45%, rgba(4,7,15,0.72) 100%)",
+                            "linear-gradient(180deg, rgba(4,7,15,0.5) 0%, rgba(4,7,15,0.25) 45%, rgba(4,7,15,0.78) 100%)",
                     }}
                 />
                 <div
                     className="absolute inset-0"
-                    style={{ background: "linear-gradient(90deg, rgba(4,7,15,0.35) 0%, transparent 55%)" }}
+                    style={{ background: "linear-gradient(90deg, rgba(4,7,15,0.55) 0%, transparent 55%)" }}
                 />
             </motion.div>
 
