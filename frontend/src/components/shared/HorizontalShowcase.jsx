@@ -20,9 +20,9 @@ const Panel = ({ v, wide = false }) => {
             }`}
             data-testid={`home-venture-${v.id}`}
         >
-            <Link to={v.path} className="zoom-frame block h-full w-full" data-testid={`home-venture-${v.id}-image`} aria-label={`${v.name} — open page`}>
+            <Link to={v.path} className="group block h-full w-full overflow-hidden" data-testid={`home-venture-${v.id}-image`} aria-label={`${v.name} — open page`}>
                 <div className="relative h-full min-h-[70vh] lg:min-h-0 w-full">
-                    <img src={v.image} alt={v.imageAlt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+                    <img src={v.image} alt={v.imageAlt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105" />
                     <div
                         className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-90"
                         style={{ background: "linear-gradient(180deg, rgba(4,7,15,0.05) 30%, rgba(4,7,15,0.82) 100%)" }}

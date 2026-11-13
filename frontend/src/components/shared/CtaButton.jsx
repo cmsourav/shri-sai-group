@@ -5,7 +5,7 @@ import Magnetic from "./Magnetic";
 /* Premium CTA: magnetic pull, accent sweep fill, arrow slide. */
 export const CtaButton = ({ to, href, label, accent = "#D4AF37", testId, external = false }) => {
     const cls =
-        "group relative inline-flex items-center gap-3 overflow-hidden border px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] transition-colors duration-500";
+        "group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] transition-all duration-500 hover:shadow-[0_0_36px_-6px_var(--glow)]";
     const inner = (
         <>
             <span
@@ -20,7 +20,7 @@ export const CtaButton = ({ to, href, label, accent = "#D4AF37", testId, externa
             />
         </>
     );
-    const style = { borderColor: accent };
+    const style = { borderColor: accent, border: `1px solid ${accent}`, "--glow": accent };
 
     const btn = to ? (
         <Link to={to} data-testid={testId} className={cls} style={style}>

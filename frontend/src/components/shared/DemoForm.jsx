@@ -152,8 +152,8 @@ export const DemoForm = ({ theme, fields, submitLabel, formId, recipientKey = "g
                     type="submit"
                     disabled={status.type === "sending"}
                     data-testid={`${formId}-submit-button`}
-                    className="group relative overflow-hidden border px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] transition-colors duration-500 disabled:opacity-50 disabled:cursor-wait"
-                    style={{ borderColor: theme.accent, color: theme.fg }}
+                    className="group relative overflow-hidden rounded-full px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] transition-all duration-500 disabled:opacity-50 disabled:cursor-wait"
+                    style={{ border: `1px solid ${theme.accent}`, color: theme.fg }}
                 >
                     <span
                         className="absolute inset-0 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0 group-disabled:translate-y-full"

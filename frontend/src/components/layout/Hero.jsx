@@ -25,6 +25,7 @@ export const Hero = ({
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
     const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "34%"]);
+    const contentScale = useTransform(scrollYProgress, [0, 0.75], [1, 0.94]);
     const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
     return (
@@ -63,9 +64,15 @@ export const Hero = ({
             )}
 
             <motion.div
-                style={reduce ? undefined : { y: contentY, opacity }}
+                style={reduce ? undefined : { y: contentY, opacity, scale: contentScale }}
                 className="relative z-10 w-full px-6 md:px-12 lg:px-16 pb-24 md:pb-32 pt-48 text-[#F5F5F5]"
             >
+                {/* ambient glow behind headline */}
+                <div
+                    className="absolute -top-24 -left-24 w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] rounded-full pointer-events-none"
+                    style={{ background: `radial-gradient(circle, ${accent}14 0%, transparent 60%)` }}
+                    aria-hidden="true"
+                />
                 {overline && (
                     <Reveal variant="left" duration={0.8}>
                         <p className="flex items-center gap-4 text-[11px] md:text-xs uppercase tracking-[0.4em] font-semibold mb-8" style={{ color: accent }}>

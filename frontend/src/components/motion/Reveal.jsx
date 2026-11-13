@@ -13,7 +13,7 @@ const clipFor = (variant) =>
  * Viewport reveal with a safety timeout so nothing can stay invisible.
  * variant: "fade" (default) | "left" | "up" (clip-mask wipes)
  */
-export const Reveal = ({ children, delay = 0, y = 44, className = "", variant = "fade", duration = 1 }) => {
+export const Reveal = ({ children, delay = 0, y = 30, className = "", variant = "fade", duration = 1.1 }) => {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
     const [forced, setForced] = useState(false);

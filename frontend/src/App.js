@@ -18,7 +18,7 @@ import Contact from "@/pages/Contact";
 const useLenis = () => {
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+        const lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.95 });
         let raf;
         const loop = (t) => {
             lenis.raf(t);

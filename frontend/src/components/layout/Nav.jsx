@@ -13,11 +13,19 @@ const LINKS = [
 
 export const Nav = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [hidden, setHidden] = useState(false);
     const [open, setOpen] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 50);
+        let last = window.scrollY;
+        const onScroll = () => {
+            const y = window.scrollY;
+            setScrolled(y > 50);
+            /* Apple-style chrome: nav tucks away scrolling down, returns scrolling up */
+            setHidden(y > 140 && y > last);
+            last = y;
+        };
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
@@ -39,11 +47,11 @@ export const Nav = () => {
         <>
             <motion.header
                 initial={{ y: -90 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, ease: EASE, delay: 0.2 }}
-                className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
+                animate={{ y: hidden && !open ? -100 : 0 }}
+                transition={{ duration: 0.55, ease: EASE }}
+                className={`fixed inset-x-0 top-0 z-[100] transition-colors duration-500 ${
                     scrolled
-                        ? "bg-[#04070F]/85 backdrop-blur-2xl border-b border-white/10"
+                        ? "bg-[#04070F]/60 backdrop-blur-3xl border-b border-white/[0.08]"
                         : "bg-transparent border-b border-transparent"
                 }`}
             >
@@ -88,7 +96,7 @@ export const Nav = () => {
                         <NavLink
                             to="/contact"
                             data-testid="nav-contact-cta"
-                            className="border border-[#D4AF37]/60 px-6 py-2.5 text-[10px] uppercase tracking-[0.26em] font-semibold text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#04070F] transition-colors duration-400"
+                            className="rounded-full border border-[#D4AF37]/60 px-6 py-2.5 text-[10px] uppercase tracking-[0.26em] font-semibold text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#04070F] transition-colors duration-400"
                         >
                             Contact Us
                         </NavLink>
