@@ -11,6 +11,7 @@ import ContactInvite from "@/components/shared/ContactInvite";
 import { CtaButton } from "@/components/shared/CtaButton";
 import Marquee from "@/components/shared/Marquee";
 import HorizontalShowcase from "@/components/shared/HorizontalShowcase";
+import ExpandingVentures from "@/components/shared/ExpandingVentures";
 import { THEMES, IMG, VENTURES, FOUNDER } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
@@ -147,6 +148,9 @@ const Home = () => (
                 </div>
             </div>
         </section>
+
+        {/* ————— Ventures — expanding flex cards ————— */}
+        <ExpandingVentures />
 
         {/* ————— Ventures marquee ————— */}
         <div className="border-y border-white/10 py-6 md:py-8 text-white/25">
