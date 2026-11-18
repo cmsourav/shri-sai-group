@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { EASE } from "../../lib/anim";
-import { VENTURES } from "../../lib/site";
+import { VENTURES, LOGO } from "../../lib/site";
 
-const BRAND = "SHRI SAI GROUP";
 const SLATS = 5;
 const LOAD_MS = 2400;
 
@@ -77,26 +76,16 @@ export const Preloader = () => {
                         </motion.p>
                     </div>
 
-                    <h1 className="flex flex-wrap justify-center font-display font-light text-[11vw] md:text-[6.5vw] leading-none tracking-tight text-[#F5F5F5]">
-                        {BRAND.split("").map((ch, i) => (
-                            <span key={i} className="inline-block overflow-hidden pb-[0.06em]">
-                                <motion.span
-                                    className="inline-block"
-                                    initial={{ y: "115%" }}
-                                    animate={{ y: "0%" }}
-                                    transition={{ duration: 0.9, ease: EASE, delay: 0.4 + i * 0.045 }}
-                                >
-                                    {ch === " " ? " " : ch}
-                                </motion.span>
-                            </span>
-                        ))}
-                        <motion.span
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ duration: 0.5, ease: EASE, delay: 0.4 + BRAND.length * 0.045 }}
-                            className="inline-block w-[0.18em] h-[0.18em] rounded-full bg-[#D4AF37] self-end mb-[0.1em] ml-[0.08em]"
+                    <div className="overflow-hidden py-2">
+                        <motion.img
+                            src={LOGO}
+                            alt="Shri Sai Group"
+                            initial={{ y: "110%", opacity: 0 }}
+                            animate={{ y: "0%", opacity: 1 }}
+                            transition={{ duration: 0.95, ease: EASE, delay: 0.4 }}
+                            className="h-20 sm:h-28 md:h-36 w-auto object-contain mx-auto"
                         />
-                    </h1>
+                    </div>
 
                     <div className="overflow-hidden mt-6">
                         <motion.p

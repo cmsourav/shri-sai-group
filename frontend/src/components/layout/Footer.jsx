@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
-import { VENTURES, CONTACT, FOUNDER } from "../../lib/site";
+import { VENTURES, CONTACT, FOUNDER, LOGO } from "../../lib/site";
 import Reveal from "../motion/Reveal";
 
 export const Footer = () => (
     <footer className="bg-[#03060D] text-[#F5F5F5] border-t border-white/10 overflow-hidden" data-testid="site-footer">
-        {/* Giant wordmark */}
+        {/* Brand logo */}
         <div className="px-6 md:px-12 lg:px-16 pt-20 pb-6">
             <Reveal variant="up" duration={1.1}>
-                <Link to="/" data-testid="footer-logo" aria-label="Shri Sai Group — home" className="block select-none">
-                    <span className="font-display font-light leading-[0.85] tracking-tight text-[16.5vw] md:text-[13vw] block whitespace-nowrap">
-                        Shri Sai
-                        <span className="text-[#D4AF37]">.</span>
-                    </span>
+                <Link to="/" data-testid="footer-logo" aria-label="Shri Sai Group — home" className="inline-block select-none">
+                    <img
+                        src={LOGO}
+                        alt="Shri Sai Group"
+                        className="h-20 md:h-28 lg:h-36 w-auto object-contain"
+                    />
                 </Link>
             </Reveal>
         </div>

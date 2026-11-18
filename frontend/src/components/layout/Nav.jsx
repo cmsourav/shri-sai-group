@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { VENTURES } from "../../lib/site";
+import { VENTURES, LOGO } from "../../lib/site";
 import { EASE } from "../../lib/anim";
 
 const LINKS = [
@@ -56,11 +56,12 @@ export const Nav = () => {
                 }`}
             >
                 <div className="flex items-center justify-between px-6 md:px-12 lg:px-16 h-[84px] text-[#F5F5F5]">
-                    <Link to="/" data-testid="nav-logo" className="group flex items-baseline gap-2.5" aria-label="Shri Sai Group — home">
-                        <span className="font-display font-medium text-[26px] tracking-tight">Shri Sai</span>
-                        <span className="text-[10px] uppercase tracking-[0.34em] font-semibold text-[#D4AF37] transition-transform duration-500 group-hover:translate-x-1 inline-block">
-                            Group
-                        </span>
+                    <Link to="/" data-testid="nav-logo" className="group flex items-center" aria-label="Shri Sai Group — home">
+                        <img
+                            src={LOGO}
+                            alt="Shri Sai Group"
+                            className="h-10 md:h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
                     </Link>
 
                     <nav className="hidden lg:flex items-center gap-10" aria-label="Primary">
@@ -127,9 +128,9 @@ export const Nav = () => {
                         transition={{ duration: 0.6, ease: EASE }}
                     >
                         <div className="flex items-center justify-between px-6 h-[84px] text-[#F5F5F5]">
-                            <span className="font-display font-medium text-[26px] tracking-tight">
-                                Shri Sai <span className="text-[10px] uppercase tracking-[0.34em] font-semibold text-[#D4AF37] font-sans">Group</span>
-                            </span>
+                            <Link to="/" onClick={() => setOpen(false)} aria-label="Shri Sai Group — home" className="flex items-center">
+                                <img src={LOGO} alt="Shri Sai Group" className="h-10 w-auto object-contain" />
+                            </Link>
                             <button
                                 data-testid="nav-mobile-close-button"
                                 onClick={() => setOpen(false)}

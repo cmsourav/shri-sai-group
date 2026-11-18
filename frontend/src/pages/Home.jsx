@@ -73,7 +73,6 @@ const Home = () => (
             image={IMG.corporate}
             video={VIDEO.corporate}
             imageAlt="Cinematic modern architecture representing a diversified business group"
-            overline="Shri Sai Group"
             lines={["A Legacy of Trust.", "A Vision for Tomorrow."]}
             subtitle="Diversified Ventures. Shared Values."
             giantWord="Sai"

@@ -9,8 +9,11 @@ export const THEMES = {
     tyre: { bg: "#0F0F0F", fg: "#E0E0E0", accent: "#D32F2F", surface: "#1A1A1A", mode: "dark" },
 };
 
+export const LOGO = "/logo.png";
+
 export const IMG = {
     /* ——— Parent brand ——— */
+    logo: LOGO,
     corporate: U("photo-1766445318570-1dc4bf3f5d79", 2200), // warm cinematic ceiling, hero
     corporate2: U("photo-1527576539890-dfa815648363"), // curved facade
     founderTexture: U("photo-1556139930-c23fa4a4f934", 2200), // dark abstract texture
@@ -60,7 +63,7 @@ export const IMG = {
 };
 
 export const VIDEO = {
-    corporate: "https://videos.pexels.com/video-files/2818546/2818546-uhd_2560_1440_24fps.mp4",
+    corporate: "https://res.cloudinary.com/r7b7h6c6/video/upload/v1794936921/hero-bg.mp4",
 };
 
 export const FOUNDER = "Kishor Anchan Manchi";
