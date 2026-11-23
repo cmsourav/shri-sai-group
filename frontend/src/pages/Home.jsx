@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Instagram } from "lucide-react";
 import Seo from "@/components/Seo";
 import Hero from "@/components/layout/Hero";
 import Reveal from "@/components/motion/Reveal";
@@ -12,50 +12,97 @@ import { CtaButton } from "@/components/shared/CtaButton";
 import Marquee from "@/components/shared/Marquee";
 import HorizontalShowcase from "@/components/shared/HorizontalShowcase";
 import ExpandingVentures from "@/components/shared/ExpandingVentures";
-import { THEMES, IMG, VIDEO, VENTURES, FOUNDER } from "@/lib/site";
+import { THEMES, IMG, VIDEO, VENTURES, FOUNDER, FOUNDER_BIO, FOUNDER_INSTAGRAM } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.parent;
 
-/* Pinned founder chapter — image holds while the editorial text sweeps past */
+/* Responsive editorial founder chapter — portrait + quote + social link */
 const FounderChapter = () => {
     const ref = useRef(null);
     const reduce = useReducedMotion();
-    const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-    const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
-    const textY = useTransform(scrollYProgress, [0, 1], ["12%", "-12%"]);
+    const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+    const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
     return (
-        <section ref={ref} className="relative h-[180vh]" data-testid="home-founder-section">
-            <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-                <motion.div style={reduce ? undefined : { scale: imgScale }} className="absolute inset-0">
-                    <img src={IMG.founderTexture} alt="" aria-hidden="true" className="h-full w-full object-cover opacity-40" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#050A14] via-transparent to-[#050A14]" />
-                </motion.div>
-                <motion.div
-                    style={reduce ? undefined : { y: textY }}
-                    className="relative z-10 px-6 md:px-12 lg:px-16 max-w-5xl"
-                >
-                    <Reveal variant="left" duration={0.8}>
-                        <p className="flex items-center gap-4 text-[11px] md:text-xs uppercase tracking-[0.4em] font-semibold mb-9" style={{ color: T.accent }}>
-                            <span className="inline-block h-px w-10 md:w-14" style={{ background: T.accent }} aria-hidden="true" />
-                            The Founder
-                        </p>
-                    </Reveal>
-                    <h2 className="font-display font-light text-[13vw] md:text-7xl lg:text-[6.5rem] leading-[0.92] tracking-tight">
-                        <MaskedLines lines={[FOUNDER]} />
-                    </h2>
-                    <Reveal delay={0.25}>
-                        <div className="mt-9 h-px w-28" style={{ background: T.accent }} />
-                        <p className="mt-9 max-w-xl text-base md:text-lg leading-relaxed text-white/70 font-light">
-                            The founder of Shri Sai Group, and the driving vision behind its four ventures —
-                            Sai Neravu Trust, KIRA Boutique Designer, KY Travels and Shri Sai Tyre.
-                        </p>
-                        <p className="mt-5 text-[11px] uppercase tracking-[0.24em] text-white/35 italic">
-                            Portrait and full profile to be added with the founder's photograph.
-                        </p>
-                    </Reveal>
-                </motion.div>
+        <section
+            ref={ref}
+            className="relative overflow-hidden py-24 sm:py-32 lg:py-44 border-t border-white/10"
+            data-testid="home-founder-section"
+        >
+            {/* Ambient background texture */}
+            <motion.div style={reduce ? undefined : { scale: imgScale }} className="absolute inset-0 pointer-events-none">
+                <img src={IMG.founderTexture} alt="" aria-hidden="true" className="h-full w-full object-cover opacity-30" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#050A14] via-[#050A14]/70 to-[#050A14]" />
+            </motion.div>
+
+            <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 lg:gap-14 items-center">
+                    {/* Founder Portrait */}
+                    <div className="lg:col-span-5">
+                        <Reveal variant="up" duration={1}>
+                            <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
+                                {/* Subtle gold offset frame */}
+                                <div
+                                    className="absolute -inset-2 sm:-inset-3 border opacity-30 pointer-events-none"
+                                    style={{ borderColor: T.accent }}
+                                    aria-hidden="true"
+                                />
+                                <div className="relative overflow-hidden bg-[#0B1120] border border-white/10 aspect-[4/5] w-full">
+                                    <img
+                                        src={IMG.founder}
+                                        alt={FOUNDER}
+                                        loading="lazy"
+                                        data-testid="home-founder-image"
+                                        className="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#050A14]/60 via-transparent to-transparent pointer-events-none" />
+                                </div>
+                            </div>
+                        </Reveal>
+                    </div>
+
+                    {/* Founder Editorial Content */}
+                    <div className="lg:col-span-7">
+                        <Reveal variant="left" duration={0.8}>
+                            <p
+                                className="flex items-center gap-4 text-[11px] md:text-xs uppercase tracking-[0.4em] font-semibold mb-6 md:mb-8"
+                                style={{ color: T.accent }}
+                            >
+                                <span className="inline-block h-px w-10 md:w-14" style={{ background: T.accent }} aria-hidden="true" />
+                                The Founder
+                            </p>
+                        </Reveal>
+
+                        <h2 className="font-display font-light text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-[0.95] tracking-tight">
+                            <MaskedLines lines={[FOUNDER]} />
+                        </h2>
+
+                        <Reveal delay={0.2}>
+                            <div className="mt-7 md:mt-9 h-px w-24 md:w-28" style={{ background: T.accent }} />
+                            <blockquote className="mt-7 md:mt-9 text-base sm:text-lg md:text-xl leading-relaxed text-white/80 font-light">
+                                &ldquo;{FOUNDER_BIO}&rdquo;
+                            </blockquote>
+
+                            <div className="mt-8 md:mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center gap-6">
+                                <a
+                                    href={FOUNDER_INSTAGRAM}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-testid="home-founder-instagram"
+                                    className="group inline-flex items-center gap-3 rounded-full border border-[#D4AF37]/50 bg-[#D4AF37]/5 px-5 py-2.5 text-[11px] uppercase tracking-[0.24em] font-semibold text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#050A14] transition-all duration-300"
+                                >
+                                    <Instagram size={15} className="shrink-0" />
+                                    <span>@kishor.anchan.manchi</span>
+                                    <ArrowUpRight
+                                        size={14}
+                                        className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                    />
+                                </a>
+                            </div>
+                        </Reveal>
+                    </div>
+                </div>
             </div>
         </section>
     );

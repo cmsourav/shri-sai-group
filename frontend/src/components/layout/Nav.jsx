@@ -16,6 +16,9 @@ export const Nav = () => {
     const [hidden, setHidden] = useState(false);
     const [open, setOpen] = useState(false);
     const location = useLocation();
+    const activeVenture = VENTURES.find((v) => location.pathname.startsWith(v.path));
+    const currentLogo = activeVenture?.logo || LOGO;
+    const currentLogoAlt = activeVenture ? activeVenture.name : "Shri Sai Group";
 
     useEffect(() => {
         let last = window.scrollY;
@@ -56,10 +59,10 @@ export const Nav = () => {
                 }`}
             >
                 <div className="flex items-center justify-between px-6 md:px-12 lg:px-16 h-[84px] text-[#F5F5F5]">
-                    <Link to="/" data-testid="nav-logo" className="group flex items-center" aria-label="Shri Sai Group — home">
+                    <Link to="/" data-testid="nav-logo" className="group flex items-center" aria-label={`${currentLogoAlt} — home`}>
                         <img
-                            src={LOGO}
-                            alt="Shri Sai Group"
+                            src={currentLogo}
+                            alt={currentLogoAlt}
                             className="h-10 md:h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                     </Link>
@@ -128,8 +131,8 @@ export const Nav = () => {
                         transition={{ duration: 0.6, ease: EASE }}
                     >
                         <div className="flex items-center justify-between px-6 h-[84px] text-[#F5F5F5]">
-                            <Link to="/" onClick={() => setOpen(false)} aria-label="Shri Sai Group — home" className="flex items-center">
-                                <img src={LOGO} alt="Shri Sai Group" className="h-10 w-auto object-contain" />
+                            <Link to="/" onClick={() => setOpen(false)} aria-label={`${currentLogoAlt} — home`} className="flex items-center">
+                                <img src={currentLogo} alt={currentLogoAlt} className="h-10 w-auto object-contain" />
                             </Link>
                             <button
                                 data-testid="nav-mobile-close-button"

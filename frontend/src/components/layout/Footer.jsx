@@ -1,17 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { VENTURES, CONTACT, FOUNDER, LOGO } from "../../lib/site";
 import Reveal from "../motion/Reveal";
 
-export const Footer = () => (
+export const Footer = () => {
+    const location = useLocation();
+    const activeVenture = VENTURES.find((v) => location.pathname.startsWith(v.path));
+    const currentLogo = activeVenture?.logo || LOGO;
+    const currentLogoAlt = activeVenture ? activeVenture.name : "Shri Sai Group";
+
+    return (
     <footer className="bg-[#03060D] text-[#F5F5F5] border-t border-white/10 overflow-hidden" data-testid="site-footer">
         {/* Brand logo */}
         <div className="px-6 md:px-12 lg:px-16 pt-20 pb-6">
             <Reveal variant="up" duration={1.1}>
-                <Link to="/" data-testid="footer-logo" aria-label="Shri Sai Group — home" className="inline-block select-none">
+                <Link to="/" data-testid="footer-logo" aria-label={`${currentLogoAlt} — home`} className="inline-block select-none">
                     <img
-                        src={LOGO}
-                        alt="Shri Sai Group"
+                        src={currentLogo}
+                        alt={currentLogoAlt}
                         className="h-20 md:h-28 lg:h-36 w-auto object-contain"
                     />
                 </Link>
@@ -98,6 +104,7 @@ export const Footer = () => (
             </div>
         </div>
     </footer>
-);
+    );
+};
 
 export default Footer;

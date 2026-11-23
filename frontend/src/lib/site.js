@@ -16,12 +16,14 @@ export const IMG = {
     logo: LOGO,
     corporate: U("photo-1766445318570-1dc4bf3f5d79", 2200), // warm cinematic ceiling, hero
     corporate2: U("photo-1527576539890-dfa815648363"), // curved facade
+    founder: "https://res.cloudinary.com/r7b7h6c6/image/upload/v1795279665/kishor.png",
     founderTexture: U("photo-1556139930-c23fa4a4f934", 2200), // dark abstract texture
     skyline: U("photo-1449824913935-59a10b8d2000", 2200),
     office: U("photo-1497366216548-37526070297c"),
     building: U("photo-1560179707-f14e90ef3623"),
     architecture: U("photo-1554469384-e58fac16e23a"),
     /* ——— Sai Neravu Trust ——— */
+    trustLogo: "https://res.cloudinary.com/r7b7h6c6/image/upload/v1795280349/sai-neravu.png",
     trustHero: U("photo-1628717341663-0007b0ee2597", 2200), // volunteers packing bags
     handsUnity: U("photo-1630068846062-3ffe78aa5049"),
     handsHeart: U("photo-1469571486292-0ba58a3f068b"),
@@ -31,6 +33,7 @@ export const IMG = {
     charityBox: U("photo-1532629345422-7515f3d16bb6"),
     trustGirl: U("photo-1729283530749-8bb89bb618e7"),
     /* ——— KIRA Boutique ——— */
+    boutiqueLogo: "https://res.cloudinary.com/r7b7h6c6/image/upload/v1794937067/kira.png",
     boutiqueHero: U("photo-1744502672203-98316831f121", 2200), // silk & hand detail
     boutiqueDress: U("photo-1705970268643-ee5981567df5"),
     embroidery1: U("photo-1579207238889-e1122bfc0c89"),
@@ -53,6 +56,7 @@ export const IMG = {
     coach: U("photo-1557223562-6c77ef16210f"),
     highway: U("photo-1578844251758-2f71da64c96f"),
     /* ——— Shri Sai Tyre ——— */
+    tyreLogo: "https://res.cloudinary.com/r7b7h6c6/image/upload/v1795284199/tyrelogo.png",
     tyreHero: U("photo-1571335746824-742511d49bce", 2200), // four tyres, moody
     tyreWork: U("photo-1645445522156-9ac06bc7a767"),
     tyreMount: U("photo-1792792944402-5e94ce198dce"),
@@ -67,12 +71,16 @@ export const VIDEO = {
 };
 
 export const FOUNDER = "Kishor Anchan Manchi";
+export const FOUNDER_BIO =
+    "When I started Shri Sai Group, my dream was to build something meaningful by bringing different businesses together under one name. Every step of this journey has taught me the value of hard work, patience, teamwork and trust. I believe that business is not just about growth; it is also about creating opportunities for others and being there for people when they need support. Through our ventures and Sai Neravu Trust, I hope to make a positive difference in people's lives. My aim is to keep growing, stay connected to our roots and build something that we can all be proud of.";
+export const FOUNDER_INSTAGRAM = "https://www.instagram.com/kishor.anchan.manchi?dmpr=Y2R3dDc3cDJ3aWU3";
 
 export const VENTURES = [
     {
         id: "trust",
         index: "01",
         name: "Sai Neravu Trust",
+        logo: IMG.trustLogo,
         tagline: "Community Initiatives & Donations",
         path: "/sai-neravu-trust",
         theme: "trust",
@@ -80,18 +88,19 @@ export const VENTURES = [
         imageAlt: "Hands joined together holding a painted heart",
         desc: "The community arm of Shri Sai Group — initiatives that give back, and a trusted channel for contributions.",
     },
-    {
-        id: "boutique",
+     {
+        id: "tyre",
         index: "02",
-        name: "KIRA Boutique Designer",
-        tagline: "Aari Artistry, Embroidery & Boutique Design",
-        path: "/kira-boutique",
-        theme: "boutique",
-        image: IMG.embroidery2,
-        imageAlt: "Intricate hand embroidery on fine fabric",
-        desc: "A design atelier for Aari artistry, fine embroidery and bespoke boutique creations.",
+        name: "Shri Sai Tyre",
+        logo: IMG.tyreLogo,
+        tagline: "Tyre Sales & Related Services",
+        path: "/shri-sai-tyre",
+        theme: "tyre",
+        image: IMG.tyreStack,
+        imageAlt: "Tyres being handled in a workshop",
+        desc: "Tyre sales and related services — dependable products and workshop support for your vehicle.",
     },
-    {
+     {
         id: "travels",
         index: "03",
         name: "KY Travels",
@@ -103,15 +112,16 @@ export const VENTURES = [
         desc: "Comfortable AC and Non-AC sleeper bus travel, with booking through the official KY Travels platform.",
     },
     {
-        id: "tyre",
+        id: "boutique",
         index: "04",
-        name: "Shri Sai Tyre",
-        tagline: "Tyre Sales & Related Services",
-        path: "/shri-sai-tyre",
-        theme: "tyre",
-        image: IMG.tyreStack,
-        imageAlt: "Tyres being handled in a workshop",
-        desc: "Tyre sales and related services — dependable products and workshop support for your vehicle.",
+        name: "KIRA Boutique Designer",
+        logo: IMG.boutiqueLogo,
+        tagline: "Aari Artistry, Embroidery & Boutique Design",
+        path: "/kira-boutique",
+        theme: "boutique",
+        image: IMG.embroidery2,
+        imageAlt: "Intricate hand embroidery on fine fabric",
+        desc: "A design atelier for Aari artistry, fine embroidery and bespoke boutique creations.",
     },
 ];
 

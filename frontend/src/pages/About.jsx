@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import Seo from "@/components/Seo";
 import Hero from "@/components/layout/Hero";
 import Reveal from "@/components/motion/Reveal";
@@ -8,7 +8,7 @@ import MaskedLines from "@/components/motion/MaskedLines";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import ContactInvite from "@/components/shared/ContactInvite";
 import Marquee from "@/components/shared/Marquee";
-import { THEMES, IMG, VENTURES, FOUNDER, CONTACT } from "@/lib/site";
+import { THEMES, IMG, VENTURES, FOUNDER, FOUNDER_BIO, FOUNDER_INSTAGRAM, CONTACT } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.parent;
@@ -83,7 +83,7 @@ const About = () => (
             >
                 01
             </span>
-            <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-14 items-end">
+            <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
                 <div className="lg:col-span-7">
                     <Reveal variant="left" duration={0.8}>
                         <p className="flex items-center gap-4 text-[11px] md:text-xs uppercase tracking-[0.4em] font-semibold mb-9" style={{ color: T.accent }}>
@@ -91,24 +91,48 @@ const About = () => (
                             Founder
                         </p>
                     </Reveal>
-                    <h2 className="font-display font-light text-6xl md:text-7xl lg:text-8xl leading-[0.94] tracking-tight">
+                    <h2 className="font-display font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.94] tracking-tight">
                         <MaskedLines lines={[FOUNDER]} />
                     </h2>
                     <Reveal delay={0.2}>
-                        <p className="mt-9 max-w-xl text-base md:text-lg leading-relaxed text-white/70 font-light">
-                            Founder of Shri Sai Group and the vision behind each of its four ventures. A fuller
-                            profile will be published here with the founder's own words and photograph.
-                        </p>
+                        <blockquote className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-white/75 font-light">
+                            &ldquo;{FOUNDER_BIO}&rdquo;
+                        </blockquote>
+                        <div className="mt-8">
+                            <a
+                                href={FOUNDER_INSTAGRAM}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-testid="about-founder-instagram"
+                                className="group inline-flex items-center gap-3 rounded-full border border-[#D4AF37]/50 bg-[#D4AF37]/5 px-5 py-2.5 text-[11px] uppercase tracking-[0.24em] font-semibold text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#050A14] transition-all duration-300"
+                            >
+                                <Instagram size={15} className="shrink-0" />
+                                <span>@kishor.anchan.manchi</span>
+                                <ArrowUpRight
+                                    size={14}
+                                    className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                />
+                            </a>
+                        </div>
                     </Reveal>
                 </div>
                 <div className="lg:col-span-5">
                     <Reveal variant="up" duration={1}>
-                        <div className="border border-dashed border-white/20 aspect-[3/4] flex items-center justify-center text-center px-8">
-                            <p className="text-[11px] uppercase tracking-[0.28em] text-white/35 leading-loose" data-testid="about-founder-photo-placeholder">
-                                Founder portrait
-                                <br />
-                                <span className="normal-case tracking-normal italic">to be added once supplied</span>
-                            </p>
+                        <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
+                            <div
+                                className="absolute -inset-2 sm:-inset-3 border opacity-30 pointer-events-none"
+                                style={{ borderColor: T.accent }}
+                                aria-hidden="true"
+                            />
+                            <div className="relative overflow-hidden bg-[#0B1120] border border-white/10 aspect-[4/5] w-full">
+                                <img
+                                    src={IMG.founder}
+                                    alt={FOUNDER}
+                                    loading="lazy"
+                                    data-testid="about-founder-photo"
+                                    className="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
+                                />
+                            </div>
                         </div>
                     </Reveal>
                 </div>
