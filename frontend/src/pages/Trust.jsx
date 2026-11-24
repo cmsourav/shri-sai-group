@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Copy, Check, Download, Maximize2, MessageCircle } from "lucide-react";
+import { Copy, Check, Download, Maximize2, MessageCircle, Instagram, ArrowUpRight } from "lucide-react";
 import Seo from "@/components/Seo";
 import Hero from "@/components/layout/Hero";
 import Reveal from "@/components/motion/Reveal";
@@ -9,7 +9,7 @@ import Lightbox from "@/components/shared/Lightbox";
 import PlaceholderChip from "@/components/shared/PlaceholderChip";
 import DemoForm from "@/components/shared/DemoForm";
 import ContactInvite from "@/components/shared/ContactInvite";
-import { THEMES, IMG } from "@/lib/site";
+import { THEMES, IMG, INSTAGRAM } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.trust;
@@ -202,11 +202,26 @@ const Trust = () => {
                                     <span className="text-[10px] uppercase tracking-[0.24em] font-semibold w-40 opacity-60">Contact</span>
                                     <span className="text-sm opacity-50 italic font-light" data-testid="trust-contribution-contact">Contribution contact number — to be updated</span>
                                 </div>
-                                <div className="flex flex-wrap items-center gap-4">
+                                <div className="flex flex-wrap items-center gap-4 border-b pb-5" style={{ borderColor: `${T.fg}1F` }}>
                                     <span className="text-[10px] uppercase tracking-[0.24em] font-semibold w-40 opacity-60">WhatsApp</span>
                                     <span className="inline-flex items-center gap-2 text-sm opacity-50 italic font-light" data-testid="trust-whatsapp-placeholder">
                                         <MessageCircle size={15} /> WhatsApp enquiry — number to be updated
                                     </span>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-4">
+                                    <span className="text-[10px] uppercase tracking-[0.24em] font-semibold w-40 opacity-60">Instagram</span>
+                                    <a
+                                        href={INSTAGRAM.trust.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-testid="trust-instagram"
+                                        className="inline-flex items-center gap-2 text-sm font-medium hover:opacity-80 transition-opacity"
+                                        style={{ color: T.accent }}
+                                    >
+                                        <Instagram size={15} />
+                                        <span className="link-underline">{INSTAGRAM.trust.display}</span>
+                                        <ArrowUpRight size={14} />
+                                    </a>
                                 </div>
                                 <p className="text-sm leading-relaxed opacity-60 pt-2 font-light">
                                     Donation instructions and the verified QR code will appear here once supplied

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight, ArrowUp } from "lucide-react";
+import { ArrowUpRight, ArrowUp, Instagram } from "lucide-react";
 import { VENTURES, CONTACT, FOUNDER, LOGO } from "../../lib/site";
 import Reveal from "../motion/Reveal";
 
@@ -8,6 +8,8 @@ export const Footer = () => {
     const activeVenture = VENTURES.find((v) => location.pathname.startsWith(v.path));
     const currentLogo = activeVenture?.logo || LOGO;
     const currentLogoAlt = activeVenture ? activeVenture.name : "Shri Sai Group";
+    const currentInstagram = activeVenture?.instagram || CONTACT.instagram;
+    const currentWhatsapp = activeVenture?.whatsapp || CONTACT.whatsapp;
 
     return (
     <footer className="bg-[#03060D] text-[#F5F5F5] border-t border-white/10 overflow-hidden" data-testid="site-footer">
@@ -84,14 +86,35 @@ export const Footer = () => {
                             )}
                         </li>
                         <li data-testid="footer-contact-whatsapp">
-                            {CONTACT.whatsapp.href ? (
-                                <a href={CONTACT.whatsapp.href} className="link-underline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            {currentWhatsapp.href ? (
+                                <a
+                                    href={currentWhatsapp.href}
+                                    className="link-underline text-white/75 hover:text-[#D4AF37] transition-colors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {currentWhatsapp.display}
+                                </a>
                             ) : (
-                                <span className="text-white/35 italic">{CONTACT.whatsapp.display}</span>
+                                <span className="text-white/35 italic">{currentWhatsapp.display}</span>
                             )}
                         </li>
                         <li data-testid="footer-contact-address" className="text-white/35 italic">{CONTACT.address.display}</li>
-                        <li data-testid="footer-contact-instagram" className="text-white/35 italic">{CONTACT.instagram.display}</li>
+                        <li data-testid="footer-contact-instagram">
+                            {currentInstagram.href ? (
+                                <a
+                                    href={currentInstagram.href}
+                                    className="link-underline inline-flex items-center gap-2 text-white/75 hover:text-[#D4AF37] transition-colors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Instagram size={14} className="shrink-0" />
+                                    <span>{currentInstagram.display}</span>
+                                </a>
+                            ) : (
+                                <span className="text-white/35 italic">{currentInstagram.display}</span>
+                            )}
+                        </li>
                     </ul>
                 </div>
             </div>

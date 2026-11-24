@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Phone, MapPin, Ticket } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MessageCircle, Phone, MapPin, Ticket, Instagram } from "lucide-react";
 import Seo from "@/components/Seo";
 import Hero from "@/components/layout/Hero";
 import Reveal from "@/components/motion/Reveal";
@@ -11,7 +11,7 @@ import PlaceholderChip from "@/components/shared/PlaceholderChip";
 import DemoForm from "@/components/shared/DemoForm";
 import ContactInvite from "@/components/shared/ContactInvite";
 import Marquee from "@/components/shared/Marquee";
-import { THEMES, IMG } from "@/lib/site";
+import { THEMES, IMG, INSTAGRAM } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.travels;
@@ -255,6 +255,18 @@ const Travels = () => {
                             <span className="inline-flex items-center gap-2 text-white/40 italic" data-testid="travels-whatsapp-placeholder">
                                 <MessageCircle size={15} /> WhatsApp enquiry — number to be updated
                             </span>
+                            <a
+                                href={INSTAGRAM.travels.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-testid="travels-instagram"
+                                className="inline-flex items-center gap-2 font-medium hover:opacity-80 transition-opacity"
+                                style={{ color: T.accent }}
+                            >
+                                <Instagram size={15} />
+                                <span className="link-underline">{INSTAGRAM.travels.display}</span>
+                                <ArrowUpRight size={14} />
+                            </a>
                         </div>
                     </Reveal>
                 </div>

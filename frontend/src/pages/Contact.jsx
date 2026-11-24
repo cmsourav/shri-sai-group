@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, MessageCircle, Instagram, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle, Instagram, ArrowRight, ArrowUpRight } from "lucide-react";
 import Seo from "@/components/Seo";
 import Reveal from "@/components/motion/Reveal";
 import MaskedLines from "@/components/motion/MaskedLines";
 import DemoForm from "@/components/shared/DemoForm";
-import { THEMES, CONTACT, VENTURES } from "@/lib/site";
+import { THEMES, CONTACT, VENTURES, INSTAGRAM } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.parent;
@@ -94,7 +94,33 @@ const Contact = () => (
                             <ContactRow icon={Mail} label="Official email" value="Email address — to be updated" testId="contact-email" />
                             <ContactRow icon={MapPin} label="Office address" value="Office address & Google Maps link — to be updated" testId="contact-address" />
                             <ContactRow icon={MessageCircle} label="WhatsApp" value="WhatsApp number — to be updated" testId="contact-whatsapp" />
-                            <ContactRow icon={Instagram} label="Social media" value="Social links — to be updated" testId="contact-social" />
+                            <li className="group flex items-start gap-5 border-b border-white/10 pb-8" data-testid="contact-social">
+                                <Instagram size={18} className="mt-1 shrink-0 transition-transform duration-400 group-hover:-translate-y-0.5" style={{ color: T.accent }} />
+                                <div className="flex-1">
+                                    <p className="text-[10px] uppercase tracking-[0.28em] font-semibold text-white/45 mb-3">Instagram</p>
+                                    <ul className="space-y-2.5 text-sm font-light">
+                                        {[
+                                            { name: "Shri Sai Group", ...INSTAGRAM.group },
+                                            { name: "Sai Neravu Trust", ...INSTAGRAM.trust },
+                                            { name: "KIRA | Boutique Designer", ...INSTAGRAM.boutique },
+                                            { name: "KY Travels | Luxury Bus Travel", ...INSTAGRAM.travels },
+                                        ].map((item) => (
+                                            <li key={item.href}>
+                                                <a
+                                                    href={item.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex flex-wrap items-center gap-2 text-white/75 hover:text-[#D4AF37] transition-colors"
+                                                >
+                                                    <span className="text-white/45 text-xs uppercase tracking-[0.18em]">{item.name}:</span>
+                                                    <span className="link-underline">{item.display}</span>
+                                                    <ArrowUpRight size={13} className="opacity-60" />
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </Reveal>
 

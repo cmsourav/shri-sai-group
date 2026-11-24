@@ -75,12 +75,39 @@ export const FOUNDER_BIO =
     "When I started Shri Sai Group, my dream was to build something meaningful by bringing different businesses together under one name. Every step of this journey has taught me the value of hard work, patience, teamwork and trust. I believe that business is not just about growth; it is also about creating opportunities for others and being there for people when they need support. Through our ventures and Sai Neravu Trust, I hope to make a positive difference in people's lives. My aim is to keep growing, stay connected to our roots and build something that we can all be proud of.";
 export const FOUNDER_INSTAGRAM = "https://www.instagram.com/kishor.anchan.manchi?dmpr=Y2R3dDc3cDJ3aWU3";
 
+export const INSTAGRAM = {
+    group: {
+        display: "@shri.sai.group",
+        href: "https://www.instagram.com/shri.sai.group?jplx=eGVpNmRoM29tYXlt",
+    },
+    trust: {
+        display: "@sai_neravu_trust_mangalore",
+        href: "https://www.instagram.com/sai_neravu_trust_mangalore?avpt=MXdyY3R2NGpyOHBiaw==",
+    },
+    boutique: {
+        display: "@kira.boutique.designer",
+        href: "https://www.instagram.com/kira.boutique.designer?hvrq=MWRha3FkNjF6NzZsOA==",
+    },
+    travels: {
+        display: "@ky_travels.in",
+        href: "https://www.instagram.com/ky_travels.in?cnvx=dm9mbDhxNGt1MnRi",
+    },
+};
+
+export const WHATSAPP = {
+    boutique: {
+        display: "WhatsApp — +91 78295 60631",
+        href: "https://wa.me/917829560631?text=Hello,+I'm+interested+in+your+designs.+I+would+like+to+make+an+enquiry.",
+    },
+};
+
 export const VENTURES = [
     {
         id: "trust",
         index: "01",
         name: "Sai Neravu Trust",
         logo: IMG.trustLogo,
+        instagram: INSTAGRAM.trust,
         tagline: "Community Initiatives & Donations",
         path: "/sai-neravu-trust",
         theme: "trust",
@@ -104,6 +131,7 @@ export const VENTURES = [
         id: "travels",
         index: "03",
         name: "KY Travels",
+        instagram: INSTAGRAM.travels,
         tagline: "Bus Travel & Ticket Booking",
         path: "/ky-travels",
         theme: "travels",
@@ -116,6 +144,8 @@ export const VENTURES = [
         index: "04",
         name: "KIRA Boutique Designer",
         logo: IMG.boutiqueLogo,
+        instagram: INSTAGRAM.boutique,
+        whatsapp: WHATSAPP.boutique,
         tagline: "Aari Artistry, Embroidery & Boutique Design",
         path: "/kira-boutique",
         theme: "boutique",
@@ -131,7 +161,7 @@ export const CONTACT = {
     whatsapp: { display: "WhatsApp — number to be updated", href: null },
     email: { display: "Email — to be updated", href: null },
     address: { display: "Office address — to be updated", href: null },
-    instagram: { display: "Instagram — handle to be updated", href: null },
+    instagram: INSTAGRAM.group,
 };
 
 export const PLACEHOLDER_NOTE = "Placeholder — awaiting verified details";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Instagram } from "lucide-react";
+import { MessageCircle, Instagram, ArrowUpRight } from "lucide-react";
 import Seo from "@/components/Seo";
 import Hero from "@/components/layout/Hero";
 import Reveal from "@/components/motion/Reveal";
@@ -10,7 +10,7 @@ import Lightbox from "@/components/shared/Lightbox";
 import DemoForm from "@/components/shared/DemoForm";
 import ContactInvite from "@/components/shared/ContactInvite";
 import Marquee from "@/components/shared/Marquee";
-import { THEMES, IMG } from "@/lib/site";
+import { THEMES, IMG, INSTAGRAM, WHATSAPP } from "@/lib/site";
 import { pageTransition } from "@/lib/anim";
 
 const T = THEMES.boutique;
@@ -114,6 +114,80 @@ const Boutique = () => {
                                 className="aspect-[4/5] w-full max-w-md ml-auto"
                             />
                         </Reveal>
+                    </div>
+                </div>
+
+                {/* Proprietor's Note */}
+                <div
+                    className="mt-24 md:mt-32 lg:mt-40 pt-16 md:pt-24 border-t relative"
+                    style={{ borderColor: `${T.fg}1A` }}
+                    data-testid="boutique-proprietor-section"
+                >
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                        <div className="lg:col-span-4">
+                            <Reveal variant="left" duration={0.8}>
+                                <p
+                                    className="flex items-center gap-4 text-[11px] md:text-xs uppercase tracking-[0.4em] font-semibold mb-6"
+                                    style={{ color: T.accent }}
+                                >
+                                    <span className="inline-block h-px w-10 md:w-14" style={{ background: T.accent }} aria-hidden="true" />
+                                    Proprietor&apos;s Note
+                                </p>
+                            </Reveal>
+                            <h3 className="font-display font-light text-3xl sm:text-4xl md:text-5xl leading-[0.98] tracking-tight">
+                                <MaskedLines lines={["Ramya S. Kotian"]} />
+                            </h3>
+                            <Reveal delay={0.15}>
+                                <p
+                                    className="mt-3 text-[11px] uppercase tracking-[0.28em] font-semibold"
+                                    style={{ color: T.accent }}
+                                >
+                                    Proprietor, KIRA Boutique Designer
+                                </p>
+                                <div className="mt-6 h-px w-20" style={{ background: T.accent }} />
+                            </Reveal>
+                        </div>
+
+                        <div className="lg:col-span-8">
+                            <Reveal delay={0.2} variant="up">
+                                <div
+                                    className="relative p-7 sm:p-10 md:p-12 border-l-2"
+                                    style={{
+                                        background: T.surface,
+                                        borderColor: T.accent,
+                                    }}
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        className="font-display italic text-6xl sm:text-7xl leading-none select-none pointer-events-none block -mb-4 opacity-25"
+                                        style={{ color: T.accent }}
+                                    >
+                                        &ldquo;
+                                    </span>
+                                    <blockquote className="font-display font-light text-lg sm:text-xl md:text-2xl leading-relaxed opacity-85">
+                                        I started KIRA Boutique Designer with a passion for fashion, creativity and the
+                                        art of embroidery. I love turning simple fabrics into beautiful, personalized
+                                        designs through Aari artistry and intricate craftsmanship. My aim is to
+                                        understand each customer&apos;s vision and bring it to life through unique
+                                        designs, quality stitching and attention to every little detail. For me, every
+                                        creation is an opportunity to make someone feel special and confident.
+                                    </blockquote>
+                                    <div className="mt-8 pt-6 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2" style={{ borderColor: `${T.fg}14` }}>
+                                        <div>
+                                            <p className="font-display font-medium text-lg sm:text-xl tracking-tight">
+                                                &mdash; Ramya S. Kotian
+                                            </p>
+                                            <p
+                                                className="mt-1 text-[10px] sm:text-[11px] uppercase tracking-[0.26em] font-semibold"
+                                                style={{ color: T.accent }}
+                                            >
+                                                Proprietor, KIRA Boutique Designer
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Reveal>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -240,12 +314,31 @@ const Boutique = () => {
                                 for a real appointment, reach us directly:
                             </p>
                             <ul className="mt-7 space-y-3 text-sm font-light">
-                                <li className="inline-flex items-center gap-2 opacity-50 italic" data-testid="boutique-whatsapp-placeholder">
-                                    <MessageCircle size={15} /> WhatsApp — number to be updated
+                                <li data-testid="boutique-whatsapp">
+                                    <a
+                                        href={WHATSAPP.boutique.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 font-medium hover:opacity-80 transition-opacity"
+                                        style={{ color: T.accent }}
+                                    >
+                                        <MessageCircle size={15} />
+                                        <span className="link-underline">{WHATSAPP.boutique.display}</span>
+                                        <ArrowUpRight size={14} />
+                                    </a>
                                 </li>
-                                <li className="block" />
-                                <li className="inline-flex items-center gap-2 opacity-50 italic" data-testid="boutique-instagram-placeholder">
-                                    <Instagram size={15} /> Instagram — handle to be updated
+                                <li data-testid="boutique-instagram">
+                                    <a
+                                        href={INSTAGRAM.boutique.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 font-medium hover:opacity-80 transition-opacity"
+                                        style={{ color: T.accent }}
+                                    >
+                                        <Instagram size={15} />
+                                        <span className="link-underline">{INSTAGRAM.boutique.display}</span>
+                                        <ArrowUpRight size={14} />
+                                    </a>
                                 </li>
                             </ul>
                         </Reveal>
